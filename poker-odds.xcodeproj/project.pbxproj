@@ -1,0 +1,590 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		927BF56F261A80D20066A48B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF56E261A80D20066A48B /* AppDelegate.m */; };
+		927BF572261A80D20066A48B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF571261A80D20066A48B /* SceneDelegate.m */; };
+		927BF575261A80D20066A48B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF574261A80D20066A48B /* ViewController.m */; };
+		927BF578261A80D20066A48B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927BF576261A80D20066A48B /* Main.storyboard */; };
+		927BF57A261A80D80066A48B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 927BF579261A80D80066A48B /* Assets.xcassets */; };
+		927BF57D261A80D80066A48B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 927BF57B261A80D80066A48B /* LaunchScreen.storyboard */; };
+		927BF580261A80D80066A48B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF57F261A80D80066A48B /* main.m */; };
+		927BF58A261A80D90066A48B /* poker_oddsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF589261A80D90066A48B /* poker_oddsTests.m */; };
+		927BF595261A80D90066A48B /* poker_oddsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF594261A80D90066A48B /* poker_oddsUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		927BF586261A80D90066A48B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 927BF562261A80D20066A48B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 927BF569261A80D20066A48B;
+			remoteInfo = "poker-odds";
+		};
+		927BF591261A80D90066A48B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 927BF562261A80D20066A48B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 927BF569261A80D20066A48B;
+			remoteInfo = "poker-odds";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		927BF56A261A80D20066A48B /* poker-odds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "poker-odds.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		927BF56D261A80D20066A48B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		927BF56E261A80D20066A48B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		927BF570261A80D20066A48B /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		927BF571261A80D20066A48B /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		927BF573261A80D20066A48B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		927BF574261A80D20066A48B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		927BF577261A80D20066A48B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		927BF579261A80D80066A48B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		927BF57C261A80D80066A48B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		927BF57E261A80D80066A48B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		927BF57F261A80D80066A48B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		927BF585261A80D90066A48B /* poker-oddsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "poker-oddsTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		927BF589261A80D90066A48B /* poker_oddsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = poker_oddsTests.m; sourceTree = "<group>"; };
+		927BF58B261A80D90066A48B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		927BF590261A80D90066A48B /* poker-oddsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "poker-oddsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		927BF594261A80D90066A48B /* poker_oddsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = poker_oddsUITests.m; sourceTree = "<group>"; };
+		927BF596261A80D90066A48B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		927BF567261A80D20066A48B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		927BF582261A80D90066A48B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		927BF58D261A80D90066A48B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		927BF561261A80D20066A48B = {
+			isa = PBXGroup;
+			children = (
+				927BF56C261A80D20066A48B /* poker-odds */,
+				927BF588261A80D90066A48B /* poker-oddsTests */,
+				927BF593261A80D90066A48B /* poker-oddsUITests */,
+				927BF56B261A80D20066A48B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		927BF56B261A80D20066A48B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				927BF56A261A80D20066A48B /* poker-odds.app */,
+				927BF585261A80D90066A48B /* poker-oddsTests.xctest */,
+				927BF590261A80D90066A48B /* poker-oddsUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		927BF56C261A80D20066A48B /* poker-odds */ = {
+			isa = PBXGroup;
+			children = (
+				927BF56D261A80D20066A48B /* AppDelegate.h */,
+				927BF56E261A80D20066A48B /* AppDelegate.m */,
+				927BF570261A80D20066A48B /* SceneDelegate.h */,
+				927BF571261A80D20066A48B /* SceneDelegate.m */,
+				927BF573261A80D20066A48B /* ViewController.h */,
+				927BF574261A80D20066A48B /* ViewController.m */,
+				927BF576261A80D20066A48B /* Main.storyboard */,
+				927BF579261A80D80066A48B /* Assets.xcassets */,
+				927BF57B261A80D80066A48B /* LaunchScreen.storyboard */,
+				927BF57E261A80D80066A48B /* Info.plist */,
+				927BF57F261A80D80066A48B /* main.m */,
+			);
+			path = "poker-odds";
+			sourceTree = "<group>";
+		};
+		927BF588261A80D90066A48B /* poker-oddsTests */ = {
+			isa = PBXGroup;
+			children = (
+				927BF589261A80D90066A48B /* poker_oddsTests.m */,
+				927BF58B261A80D90066A48B /* Info.plist */,
+			);
+			path = "poker-oddsTests";
+			sourceTree = "<group>";
+		};
+		927BF593261A80D90066A48B /* poker-oddsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				927BF594261A80D90066A48B /* poker_oddsUITests.m */,
+				927BF596261A80D90066A48B /* Info.plist */,
+			);
+			path = "poker-oddsUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		927BF569261A80D20066A48B /* poker-odds */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 927BF599261A80D90066A48B /* Build configuration list for PBXNativeTarget "poker-odds" */;
+			buildPhases = (
+				927BF566261A80D20066A48B /* Sources */,
+				927BF567261A80D20066A48B /* Frameworks */,
+				927BF568261A80D20066A48B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "poker-odds";
+			productName = "poker-odds";
+			productReference = 927BF56A261A80D20066A48B /* poker-odds.app */;
+			productType = "com.apple.product-type.application";
+		};
+		927BF584261A80D90066A48B /* poker-oddsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 927BF59C261A80D90066A48B /* Build configuration list for PBXNativeTarget "poker-oddsTests" */;
+			buildPhases = (
+				927BF581261A80D90066A48B /* Sources */,
+				927BF582261A80D90066A48B /* Frameworks */,
+				927BF583261A80D90066A48B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				927BF587261A80D90066A48B /* PBXTargetDependency */,
+			);
+			name = "poker-oddsTests";
+			productName = "poker-oddsTests";
+			productReference = 927BF585261A80D90066A48B /* poker-oddsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		927BF58F261A80D90066A48B /* poker-oddsUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 927BF59F261A80D90066A48B /* Build configuration list for PBXNativeTarget "poker-oddsUITests" */;
+			buildPhases = (
+				927BF58C261A80D90066A48B /* Sources */,
+				927BF58D261A80D90066A48B /* Frameworks */,
+				927BF58E261A80D90066A48B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				927BF592261A80D90066A48B /* PBXTargetDependency */,
+			);
+			name = "poker-oddsUITests";
+			productName = "poker-oddsUITests";
+			productReference = 927BF590261A80D90066A48B /* poker-oddsUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		927BF562261A80D20066A48B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1160;
+				ORGANIZATIONNAME = "Anthony Bajoua";
+				TargetAttributes = {
+					927BF569261A80D20066A48B = {
+						CreatedOnToolsVersion = 11.6;
+					};
+					927BF584261A80D90066A48B = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 927BF569261A80D20066A48B;
+					};
+					927BF58F261A80D90066A48B = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 927BF569261A80D20066A48B;
+					};
+				};
+			};
+			buildConfigurationList = 927BF565261A80D20066A48B /* Build configuration list for PBXProject "poker-odds" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 927BF561261A80D20066A48B;
+			productRefGroup = 927BF56B261A80D20066A48B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				927BF569261A80D20066A48B /* poker-odds */,
+				927BF584261A80D90066A48B /* poker-oddsTests */,
+				927BF58F261A80D90066A48B /* poker-oddsUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		927BF568261A80D20066A48B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				927BF57D261A80D80066A48B /* LaunchScreen.storyboard in Resources */,
+				927BF57A261A80D80066A48B /* Assets.xcassets in Resources */,
+				927BF578261A80D20066A48B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		927BF583261A80D90066A48B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		927BF58E261A80D90066A48B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		927BF566261A80D20066A48B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				927BF575261A80D20066A48B /* ViewController.m in Sources */,
+				927BF56F261A80D20066A48B /* AppDelegate.m in Sources */,
+				927BF580261A80D80066A48B /* main.m in Sources */,
+				927BF572261A80D20066A48B /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		927BF581261A80D90066A48B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				927BF58A261A80D90066A48B /* poker_oddsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		927BF58C261A80D90066A48B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				927BF595261A80D90066A48B /* poker_oddsUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		927BF587261A80D90066A48B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 927BF569261A80D20066A48B /* poker-odds */;
+			targetProxy = 927BF586261A80D90066A48B /* PBXContainerItemProxy */;
+		};
+		927BF592261A80D90066A48B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 927BF569261A80D20066A48B /* poker-odds */;
+			targetProxy = 927BF591261A80D90066A48B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		927BF576261A80D20066A48B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				927BF577261A80D20066A48B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		927BF57B261A80D80066A48B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				927BF57C261A80D80066A48B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		927BF597261A80D90066A48B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		927BF598261A80D90066A48B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		927BF59A261A80D90066A48B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R38YSAACD6;
+				INFOPLIST_FILE = "poker-odds/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.me.poker-odds";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		927BF59B261A80D90066A48B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R38YSAACD6;
+				INFOPLIST_FILE = "poker-odds/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.me.poker-odds";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		927BF59D261A80D90066A48B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R38YSAACD6;
+				INFOPLIST_FILE = "poker-oddsTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.me.poker-oddsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/poker-odds.app/poker-odds";
+			};
+			name = Debug;
+		};
+		927BF59E261A80D90066A48B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R38YSAACD6;
+				INFOPLIST_FILE = "poker-oddsTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.me.poker-oddsTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/poker-odds.app/poker-odds";
+			};
+			name = Release;
+		};
+		927BF5A0261A80D90066A48B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R38YSAACD6;
+				INFOPLIST_FILE = "poker-oddsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.me.poker-oddsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "poker-odds";
+			};
+			name = Debug;
+		};
+		927BF5A1261A80D90066A48B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R38YSAACD6;
+				INFOPLIST_FILE = "poker-oddsUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.me.poker-oddsUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "poker-odds";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		927BF565261A80D20066A48B /* Build configuration list for PBXProject "poker-odds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				927BF597261A80D90066A48B /* Debug */,
+				927BF598261A80D90066A48B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		927BF599261A80D90066A48B /* Build configuration list for PBXNativeTarget "poker-odds" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				927BF59A261A80D90066A48B /* Debug */,
+				927BF59B261A80D90066A48B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		927BF59C261A80D90066A48B /* Build configuration list for PBXNativeTarget "poker-oddsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				927BF59D261A80D90066A48B /* Debug */,
+				927BF59E261A80D90066A48B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		927BF59F261A80D90066A48B /* Build configuration list for PBXNativeTarget "poker-oddsUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				927BF5A0261A80D90066A48B /* Debug */,
+				927BF5A1261A80D90066A48B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 927BF562261A80D20066A48B /* Project object */;
+}
