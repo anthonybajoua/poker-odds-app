@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "Table.h"
 
 @interface poker_oddsTests : XCTestCase
 
@@ -22,9 +23,11 @@
     // Put teardown code here. This method is called after the invocation of each test method in the class.
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testDeckProperties {
+    Table *table = [[Table alloc] initWithPlayers:2];
+    for (int i = 0; i < 1000000; i++) {
+        [table playGame];
+    }
 }
 
 - (void)testPerformanceExample {

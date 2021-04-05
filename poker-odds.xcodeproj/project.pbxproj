@@ -16,6 +16,10 @@
 		927BF580261A80D80066A48B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF57F261A80D80066A48B /* main.m */; };
 		927BF58A261A80D90066A48B /* poker_oddsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF589261A80D90066A48B /* poker_oddsTests.m */; };
 		927BF595261A80D90066A48B /* poker_oddsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF594261A80D90066A48B /* poker_oddsUITests.m */; };
+		927BF5A7261A81AD0066A48B /* Table.mm in Sources */ = {isa = PBXBuildFile; fileRef = 927BF5A6261A81AD0066A48B /* Table.mm */; };
+		927BF5A8261A81AD0066A48B /* Table.mm in Sources */ = {isa = PBXBuildFile; fileRef = 927BF5A6261A81AD0066A48B /* Table.mm */; };
+		927BF5AF261A88640066A48B /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF5AE261A88640066A48B /* Deck.m */; };
+		927BF5B0261A88640066A48B /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF5AE261A88640066A48B /* Deck.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		92245353261AE68D00223BE3 /* RankOffsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankOffsets.h; sourceTree = "<group>"; };
+		92245354261AE68E00223BE3 /* Deckcards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deckcards.h; sourceTree = "<group>"; };
+		92245356261AE68E00223BE3 /* SevenEval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenEval.h; sourceTree = "<group>"; };
+		92245357261AE68E00223BE3 /* FlushCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlushCheck.h; sourceTree = "<group>"; };
+		92245358261AE68F00223BE3 /* RankHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankHash.h; sourceTree = "<group>"; };
+		92245359261AE68F00223BE3 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		9224535A261AE68F00223BE3 /* FlushRanks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlushRanks.h; sourceTree = "<group>"; };
 		927BF56A261A80D20066A48B /* poker-odds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "poker-odds.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		927BF56D261A80D20066A48B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		927BF56E261A80D20066A48B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +65,10 @@
 		927BF590261A80D90066A48B /* poker-oddsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "poker-oddsUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		927BF594261A80D90066A48B /* poker_oddsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = poker_oddsUITests.m; sourceTree = "<group>"; };
 		927BF596261A80D90066A48B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		927BF5A2261A81210066A48B /* Table.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Table.h; sourceTree = "<group>"; };
+		927BF5A6261A81AD0066A48B /* Table.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Table.mm; sourceTree = "<group>"; };
+		927BF5AD261A88640066A48B /* Deck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		927BF5AE261A88640066A48B /* Deck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +96,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9224535D261AE82800223BE3 /* seven-eval */ = {
+			isa = PBXGroup;
+			children = (
+				92245359261AE68F00223BE3 /* Constants.h */,
+				92245354261AE68E00223BE3 /* Deckcards.h */,
+				92245357261AE68E00223BE3 /* FlushCheck.h */,
+				9224535A261AE68F00223BE3 /* FlushRanks.h */,
+				92245358261AE68F00223BE3 /* RankHash.h */,
+				92245353261AE68D00223BE3 /* RankOffsets.h */,
+				92245356261AE68E00223BE3 /* SevenEval.h */,
+			);
+			path = "seven-eval";
+			sourceTree = "<group>";
+		};
 		927BF561261A80D20066A48B = {
 			isa = PBXGroup;
 			children = (
@@ -104,7 +133,12 @@
 		927BF56C261A80D20066A48B /* poker-odds */ = {
 			isa = PBXGroup;
 			children = (
+				9224535D261AE82800223BE3 /* seven-eval */,
 				927BF56D261A80D20066A48B /* AppDelegate.h */,
+				927BF5A2261A81210066A48B /* Table.h */,
+				927BF5A6261A81AD0066A48B /* Table.mm */,
+				927BF5AD261A88640066A48B /* Deck.h */,
+				927BF5AE261A88640066A48B /* Deck.m */,
 				927BF56E261A80D20066A48B /* AppDelegate.m */,
 				927BF570261A80D20066A48B /* SceneDelegate.h */,
 				927BF571261A80D20066A48B /* SceneDelegate.m */,
@@ -268,8 +302,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				927BF575261A80D20066A48B /* ViewController.m in Sources */,
+				927BF5AF261A88640066A48B /* Deck.m in Sources */,
 				927BF56F261A80D20066A48B /* AppDelegate.m in Sources */,
 				927BF580261A80D80066A48B /* main.m in Sources */,
+				927BF5A7261A81AD0066A48B /* Table.mm in Sources */,
 				927BF572261A80D20066A48B /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +314,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927BF5B0261A88640066A48B /* Deck.m in Sources */,
+				927BF5A8261A81AD0066A48B /* Table.mm in Sources */,
 				927BF58A261A80D90066A48B /* poker_oddsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
