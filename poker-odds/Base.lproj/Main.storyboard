@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,149 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JS9-fp-u8X" userLabel="flop3">
+                                <rect key="frame" x="179" y="89" width="56" height="88"/>
+                                <accessibility key="accessibilityConfiguration" identifier="flop1" label="flop1"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="Rv2-1u-pWb"/>
+                                    <constraint firstAttribute="height" constant="88" id="bDy-ea-Bcn"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="back"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="flop3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8dK-LZ-f3w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU6-Jb-wiV" userLabel="flop2">
+                                <rect key="frame" x="113" y="89" width="56" height="88"/>
+                                <accessibility key="accessibilityConfiguration" identifier="flop2" label="flop2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="ulS-ko-hmC"/>
+                                    <constraint firstAttribute="height" constant="88" id="vov-Lv-869"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="back"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="flop2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ap2-2t-0bd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7D4-R9-ONe" userLabel="turn">
+                                <rect key="frame" x="245" y="89" width="56" height="88"/>
+                                <accessibility key="accessibilityConfiguration" identifier="turn" label="turn"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="ALh-tB-acD"/>
+                                    <constraint firstAttribute="height" constant="88" id="B24-Kd-YJm"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="back"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="flop4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JiB-jj-eRe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcE-re-cxF" userLabel="river">
+                                <rect key="frame" x="311" y="89" width="56" height="88"/>
+                                <accessibility key="accessibilityConfiguration" identifier="river" label="river"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="88" id="0Mw-P3-r4B"/>
+                                    <constraint firstAttribute="width" constant="56" id="Ha5-CA-MQR"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="back"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="flop5:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J6a-52-p7C"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlQ-1B-NNY" userLabel="flop1">
+                                <rect key="frame" x="47" y="89" width="56" height="88"/>
+                                <accessibility key="accessibilityConfiguration" identifier="flop3" label="flop3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="56" id="PvU-qo-0De"/>
+                                    <constraint firstAttribute="height" constant="88" id="vm5-O1-l36"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="back"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="flop1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eJV-OJ-D7s"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl0-YP-GQb" userLabel="Add Player">
+                                <rect key="frame" x="352" y="825" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Quq-Aq-haO"/>
+                                    <constraint firstAttribute="height" constant="50" id="bpI-OG-UQ9"/>
+                                </constraints>
+                                <state key="normal" image="person.crop.circle.badge.plus" catalog="system"/>
+                                <connections>
+                                    <action selector="addPlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nbc-DY-GRY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRS-zY-HMs" userLabel="Remove Player">
+                                <rect key="frame" x="10" y="825" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="bAr-u4-qaa"/>
+                                    <constraint firstAttribute="width" constant="50" id="miY-av-Vmr"/>
+                                </constraints>
+                                <state key="normal" image="person.crop.circle.badge.minus" catalog="system"/>
+                                <connections>
+                                    <action selector="removePlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eGh-xs-Fa3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.064753261076405388" green="0.78039215689999997" blue="0.096245812441441633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <accessibility key="accessibilityConfiguration" identifier="PokerTable" label="PokerTable"/>
+                        <constraints>
+                            <constraint firstItem="dcE-re-cxF" firstAttribute="leading" secondItem="7D4-R9-ONe" secondAttribute="trailing" constant="10" id="1U9-6S-0YO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cl0-YP-GQb" secondAttribute="trailing" constant="10" id="8Il-Zy-YJU"/>
+                            <constraint firstItem="dcE-re-cxF" firstAttribute="centerY" secondItem="7D4-R9-ONe" secondAttribute="centerY" id="B8a-gC-aCA"/>
+                            <constraint firstItem="oU6-Jb-wiV" firstAttribute="leading" secondItem="JlQ-1B-NNY" secondAttribute="trailing" constant="10" id="Htp-WA-Wt9"/>
+                            <constraint firstItem="Cl0-YP-GQb" firstAttribute="centerY" secondItem="mRS-zY-HMs" secondAttribute="centerY" id="N9d-Tp-H2G"/>
+                            <constraint firstItem="mRS-zY-HMs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="NDW-LB-r1p"/>
+                            <constraint firstItem="JS9-fp-u8X" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RBC-Ot-QU0"/>
+                            <constraint firstItem="mRS-zY-HMs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="WJi-SS-A6W"/>
+                            <constraint firstItem="7D4-R9-ONe" firstAttribute="leading" secondItem="JS9-fp-u8X" secondAttribute="trailing" constant="10" id="X98-46-hbg"/>
+                            <constraint firstItem="7D4-R9-ONe" firstAttribute="centerY" secondItem="JS9-fp-u8X" secondAttribute="centerY" id="l5D-QO-Ivv"/>
+                            <constraint firstItem="oU6-Jb-wiV" firstAttribute="centerY" secondItem="JS9-fp-u8X" secondAttribute="centerY" id="nKb-WG-0gx"/>
+                            <constraint firstItem="JS9-fp-u8X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="oZv-9s-xKJ"/>
+                            <constraint firstItem="JS9-fp-u8X" firstAttribute="leading" secondItem="oU6-Jb-wiV" secondAttribute="trailing" constant="10" id="s4b-CY-izA"/>
+                            <constraint firstItem="JlQ-1B-NNY" firstAttribute="centerY" secondItem="JS9-fp-u8X" secondAttribute="centerY" id="sc0-87-Ia7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="97.767857142857139"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="back" width="283.5" height="402"/>
+        <image name="person.crop.circle.badge.minus" catalog="system" width="128" height="101"/>
+        <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="101"/>
+    </resources>
 </document>

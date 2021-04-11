@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "Table.h"
 #import "Deck.h"
-#import "seven-eval/SevenEval.h"
+#import "SKPokerEval/SevenEval.h"
 
 
 @implementation Table : NSObject
@@ -36,6 +36,7 @@ uint8_t holeCards[20];
     if ( self = [super init] ) {
         _numPlayers = players;
         _deck = [[Deck alloc ]init];
+        _winTallies = [NSMutableArray arrayWithCapacity:_numPlayers];
         [self deal];
         return self;
     }
@@ -89,25 +90,30 @@ uint8_t holeCards[20];
     c4 = tableCards[3];
     c5 = tableCards[4];
 
-    int bestHandValue = 0;
-    int winningPlayer = -1;
     
-//    [self logBoard];
-//    [self logHands];
+    [self logBoard];
+    [self logHands];
+    
+    NSMutableDictionary *scores = [NSMutableDictionary dictionary];
 
     int count = 0;
     for (int i = 0; i < _numPlayers; i++) {
         c6 = holeCards[count++];
         c7 = holeCards[count++];
         
-        NSInteger handRanking = SevenEval::GetRank(c1, c2, c3, c4, c5, c6, c7);
+        NSValue *handRanking = [NSNumber numberWithUnsignedInt:SevenEval::GetRank(c1, c2, c3, c4, c5, c6, c7)];
+        NSValue *player = [NSNumber numberWithInt:i];
         
-        if (handRanking > bestHandValue) {
-            bestHandValue = handRanking;
-            winningPlayer = i;
+        if (NSMutableArray *playersWithScore = [scores objectForKey:handRanking.description]) {
+            [playersWithScore addObject:player];
+        } else {
+            [scores setValue:[NSMutableArray arrayWithObject:player] forKey:handRanking.description];
         }
     }
-//    NSLog(@"The winner is %ld", (long)winningPlayer);
+    
+    NSArray *winners = [scores objectForKey:[[scores allKeys] valueForKeyPath:@"@max.self"]];
+        
+    
     [_deck shuffle];
     didRiver = didFlop = didTurn = NO;
     [self deal];

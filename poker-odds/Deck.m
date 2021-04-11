@@ -7,7 +7,7 @@
 //
 
 #import "Deck.h"
-#import "Constants.h"
+#import "SKPokerEval/Constants.h"
 
 @implementation Deck
 
