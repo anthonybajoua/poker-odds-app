@@ -8,6 +8,23 @@
 
 #import "ViewController.h"
 
+@interface CardButton : UIButton
+
+@property NSString *currentCard;
+@end
+
+@implementation CardButton
+
+-(id) init {
+    if (self = [super init]) {
+        return self;
+    }
+    return nil;
+}
+
+@end
+
+
 
 @interface ViewController ()
 
@@ -23,10 +40,9 @@ const int kNumPlayersMax = 10;
 const int kNumPlayersMin = 2;
 const int cardHeight = 88;
 const int cardWidth = 56;
+static NSDictionary* nameDictionary = nil;
 
-
-
-- (IBAction)removePlayer:(id)sender {
+- (IBAction)removePlayer:(UIButton *)sender {
     if (numPlayers > kNumPlayersMin) {
         UIView *viewToRemove = [playerViews objectAtIndex:playerViews.count - 1];
         [viewToRemove removeFromSuperview];
@@ -35,7 +51,7 @@ const int cardWidth = 56;
     }
 }
 
-- (IBAction)addPlayer:(id)sender {
+- (IBAction)addPlayer:(UIButton *)sender {
     if (numPlayers < kNumPlayersMax) {
         [playerStackView addArrangedSubview:[self createPlayerView]];
         numPlayers++;
@@ -43,28 +59,39 @@ const int cardWidth = 56;
 }
 
 - (IBAction)flop1:(UIButton *)sender {
+    [self getInputForButton:sender];
 }
 
 - (IBAction)flop2:(UIButton *)sender {
+    [self getInputForButton:sender];
 }
 - (IBAction)flop3:(UIButton *)sender {
+    [self getInputForButton:sender];
 }
 - (IBAction)flop4:(UIButton *)sender {
+    [self getInputForButton:sender];
 }
 - (IBAction)flop5:(UIButton *)sender {
+    [self getInputForButton:sender];
 }
 
 CGFloat screenWidth, screenHeight;
 UIStackView *playerStackView;
 UIScrollView *playerScrollView;
 NSMutableArray *playerViews;
+NSMutableSet *cardsOnTable;
 int numPlayers;
+UIButton *currentButton;
+UIImage *backImg;
+
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadNameDictionary];
     //Stack View
     playerViews = [NSMutableArray array];
+    cardsOnTable = [NSMutableSet set];
     
     [self createPlayerScrollView];
     numPlayers = kNumPlayersDefault;
@@ -75,7 +102,9 @@ int numPlayers;
     [playerScrollView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor].active = YES;
     [playerScrollView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor].active = YES;
     
-    [self createPlayerStackView:3];
+    backImg = [UIImage imageNamed:@"back"];
+    
+    [self createPlayerStackView:kNumPlayersDefault];
     
     [self.view reloadInputViews];
     
@@ -86,6 +115,7 @@ int numPlayers;
     playerScrollView = [[UIScrollView alloc] init];
     playerScrollView.translatesAutoresizingMaskIntoConstraints = NO;
     playerScrollView.userInteractionEnabled = YES;
+    [playerScrollView setNeedsDisplay];
 }
 
 
@@ -103,8 +133,8 @@ int numPlayers;
     [playerStackView.leadingAnchor constraintEqualToAnchor:playerScrollView.leadingAnchor].active = YES;
     [playerStackView.trailingAnchor constraintEqualToAnchor:playerScrollView.trailingAnchor].active = YES;
     
-//    [playerStackView.centerXAnchor constraintEqualToAnchor:playerScrollView.centerXAnchor].active = YES;
-//    [playerStackView.centerYAnchor constraintEqualToAnchor:playerScrollView.centerYAnchor].active = YES;
+    [playerStackView setNeedsDisplay];
+
     
     for (int i = 0; i < numPlayers; i++) {
         [playerStackView addArrangedSubview:[self createPlayerView]];
@@ -117,6 +147,7 @@ int numPlayers;
     [playerView.widthAnchor constraintEqualToConstant:self.view.frame.size.width].active = YES;
     
     playerView.translatesAutoresizingMaskIntoConstraints = NO;
+    [playerView setNeedsDisplay];
     
     
     UIButton *button1 = [self createCardButton];
@@ -138,11 +169,14 @@ int numPlayers;
 }
 
 -(UIButton *) createCardButton {
-    UIButton *cardButton = [UIButton systemButtonWithImage:[UIImage imageNamed:@"back"] target:self action:@selector(selectCard)];
-    [cardButton addTarget:self action:@selector(selectCard) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *cardButton = [[CardButton alloc] init];
+    [cardButton setBackgroundImage:backImg forState:UIControlStateNormal];
+    [cardButton setBackgroundColor:[UIColor whiteColor]];
+    [cardButton addTarget:self action:@selector(getInputForButton:) forControlEvents:UIControlEventTouchUpInside];
     cardButton.translatesAutoresizingMaskIntoConstraints = NO;
     [[cardButton.widthAnchor constraintEqualToConstant:cardWidth] setActive:YES];
     [[cardButton.heightAnchor constraintEqualToConstant:cardHeight] setActive:YES];
+    currentButton = cardButton;
     return cardButton;
 }
 
@@ -150,6 +184,65 @@ int numPlayers;
     NSLog(@"I WORK");
 }
 
+-(void) getInputForButton:(id)sender {
+    CardButton *btn = (CardButton *) sender;
+    if (!btn.currentCard) {
+        UIAlertController *alert= [UIAlertController
+                                      alertControllerWithTitle:@"Select card"
+                                      message:@"Please select a card"
+                                      preferredStyle:UIAlertControllerStyleAlert];
+
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action){
+            
+            NSString *card, *rank, *suit;
+            card = alert.textFields[0].text;
+            if (card.length >= 2) {
+                rank = [[nameDictionary objectForKey:[card substringToIndex:card.length - 1]] lowercaseString];
+                suit = [[nameDictionary objectForKey:[card substringFromIndex:card.length - 1]] lowercaseString];
+                if (rank && suit) {
+                    card = [NSString stringWithFormat:@"%@_of_%@", rank, suit];
+                    if (![cardsOnTable containsObject:card]) {
+                        [sender setBackgroundImage:[UIImage imageNamed:card] forState:UIControlStateNormal];
+                        [cardsOnTable addObject:card];
+                        btn.currentCard = card;
+                    } else {
+                        //TODO
+                    }
+                }
+            }
+                    
+                                                   }];
+        UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault
+                                                       handler:^(UIAlertAction * action) {
+                                                           [alert dismissViewControllerAnimated:YES completion:nil];
+                                                       }];
+
+        [alert addAction:ok];
+        [alert addAction:cancel];
+
+        [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+            textField.placeholder = @"Input card, e.g. ah, ac ... 5d, 5s ... jd ";
+            textField.keyboardType = UIKeyboardTypeDefault;
+        }];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else {
+        [sender setBackgroundImage:backImg forState:UIControlStateNormal];
+        [cardsOnTable removeObject:btn.currentCard];
+        btn.currentCard = nil;
+    }
+    
+}
+
+#pragma mark helpers
+
+- (void)loadNameDictionary {
+
+ nameDictionary = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:
+                                                         @"ace", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"jack", @"queen", @"king", @"spades", @"clubs", @"diamonds", @"hearts", nil]
+                                                forKeys:[NSArray arrayWithObjects:
+                                                         @"a", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"j", @"q", @"k", @"s", @"c", @"d", @"h", nil]];
+}
 
 
 @end

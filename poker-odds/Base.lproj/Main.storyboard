@@ -15,93 +15,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JS9-fp-u8X" userLabel="flop3">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JS9-fp-u8X" userLabel="flop3" customClass="CardButton">
                                 <rect key="frame" x="179" y="89" width="56" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="flop1" label="flop1"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="Rv2-1u-pWb"/>
                                     <constraint firstAttribute="height" constant="88" id="bDy-ea-Bcn"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="flop3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8dK-LZ-f3w"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU6-Jb-wiV" userLabel="flop2">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU6-Jb-wiV" userLabel="flop2" customClass="CardButton">
                                 <rect key="frame" x="113" y="89" width="56" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="flop2" label="flop2"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="ulS-ko-hmC"/>
                                     <constraint firstAttribute="height" constant="88" id="vov-Lv-869"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="flop2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ap2-2t-0bd"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7D4-R9-ONe" userLabel="turn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7D4-R9-ONe" userLabel="turn" customClass="CardButton">
                                 <rect key="frame" x="245" y="89" width="56" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="turn" label="turn"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="ALh-tB-acD"/>
                                     <constraint firstAttribute="height" constant="88" id="B24-Kd-YJm"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="flop4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JiB-jj-eRe"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcE-re-cxF" userLabel="river">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcE-re-cxF" userLabel="river" customClass="CardButton">
                                 <rect key="frame" x="311" y="89" width="56" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="river" label="river"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="88" id="0Mw-P3-r4B"/>
                                     <constraint firstAttribute="width" constant="56" id="Ha5-CA-MQR"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="flop5:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J6a-52-p7C"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlQ-1B-NNY" userLabel="flop1">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlQ-1B-NNY" userLabel="flop1" customClass="CardButton">
                                 <rect key="frame" x="47" y="89" width="56" height="88"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <accessibility key="accessibilityConfiguration" identifier="flop3" label="flop3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="PvU-qo-0De"/>
                                     <constraint firstAttribute="height" constant="88" id="vm5-O1-l36"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="flop1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eJV-OJ-D7s"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl0-YP-GQb" userLabel="Add Player">
-                                <rect key="frame" x="352" y="825" width="50" height="50"/>
+                                <rect key="frame" x="344" y="812" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Quq-Aq-haO"/>
                                     <constraint firstAttribute="height" constant="50" id="bpI-OG-UQ9"/>
@@ -112,7 +92,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRS-zY-HMs" userLabel="Remove Player">
-                                <rect key="frame" x="10" y="825" width="50" height="50"/>
+                                <rect key="frame" x="20" y="812" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bAr-u4-qaa"/>
                                     <constraint firstAttribute="width" constant="50" id="miY-av-Vmr"/>
