@@ -24,9 +24,6 @@
                                     <constraint firstAttribute="height" constant="88" id="bDy-ea-Bcn"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <connections>
-                                    <action selector="flop3:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8dK-LZ-f3w"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU6-Jb-wiV" userLabel="flop2" customClass="CardButton">
                                 <rect key="frame" x="113" y="89" width="56" height="88"/>
@@ -37,9 +34,6 @@
                                     <constraint firstAttribute="height" constant="88" id="vov-Lv-869"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <connections>
-                                    <action selector="flop2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ap2-2t-0bd"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7D4-R9-ONe" userLabel="turn" customClass="CardButton">
                                 <rect key="frame" x="245" y="89" width="56" height="88"/>
@@ -50,9 +44,6 @@
                                     <constraint firstAttribute="height" constant="88" id="B24-Kd-YJm"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <connections>
-                                    <action selector="flop4:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JiB-jj-eRe"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcE-re-cxF" userLabel="river" customClass="CardButton">
                                 <rect key="frame" x="311" y="89" width="56" height="88"/>
@@ -63,9 +54,6 @@
                                     <constraint firstAttribute="width" constant="56" id="Ha5-CA-MQR"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <connections>
-                                    <action selector="flop5:" destination="BYZ-38-t0r" eventType="touchUpInside" id="J6a-52-p7C"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JlQ-1B-NNY" userLabel="flop1" customClass="CardButton">
                                 <rect key="frame" x="47" y="89" width="56" height="88"/>
@@ -76,9 +64,6 @@
                                     <constraint firstAttribute="height" constant="88" id="vm5-O1-l36"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
-                                <connections>
-                                    <action selector="flop1:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eJV-OJ-D7s"/>
-                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl0-YP-GQb" userLabel="Add Player">
                                 <rect key="frame" x="344" y="812" width="50" height="50"/>
@@ -102,6 +87,14 @@
                                     <action selector="removePlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eGh-xs-Fa3"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="clear" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZm-Ns-zmi" userLabel="clear">
+                                <rect key="frame" x="188" y="36" width="38" height="39"/>
+                                <accessibility key="accessibilityConfiguration" identifier="clear" label="clear"/>
+                                <state key="normal" image="clear" catalog="system"/>
+                                <connections>
+                                    <action selector="clearCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="92e-9J-QIv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.064753261076405388" green="0.78039215689999997" blue="0.096245812441441633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -110,6 +103,7 @@
                             <constraint firstItem="dcE-re-cxF" firstAttribute="leading" secondItem="7D4-R9-ONe" secondAttribute="trailing" constant="10" id="1U9-6S-0YO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Cl0-YP-GQb" secondAttribute="trailing" constant="10" id="8Il-Zy-YJU"/>
                             <constraint firstItem="dcE-re-cxF" firstAttribute="centerY" secondItem="7D4-R9-ONe" secondAttribute="centerY" id="B8a-gC-aCA"/>
+                            <constraint firstItem="JS9-fp-u8X" firstAttribute="top" secondItem="UZm-Ns-zmi" secondAttribute="bottom" constant="25" id="Bqa-n5-VHS"/>
                             <constraint firstItem="oU6-Jb-wiV" firstAttribute="leading" secondItem="JlQ-1B-NNY" secondAttribute="trailing" constant="10" id="Htp-WA-Wt9"/>
                             <constraint firstItem="Cl0-YP-GQb" firstAttribute="centerY" secondItem="mRS-zY-HMs" secondAttribute="centerY" id="N9d-Tp-H2G"/>
                             <constraint firstItem="mRS-zY-HMs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="NDW-LB-r1p"/>
@@ -121,6 +115,7 @@
                             <constraint firstItem="JS9-fp-u8X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="oZv-9s-xKJ"/>
                             <constraint firstItem="JS9-fp-u8X" firstAttribute="leading" secondItem="oU6-Jb-wiV" secondAttribute="trailing" constant="10" id="s4b-CY-izA"/>
                             <constraint firstItem="JlQ-1B-NNY" firstAttribute="centerY" secondItem="JS9-fp-u8X" secondAttribute="centerY" id="sc0-87-Ia7"/>
+                            <constraint firstItem="UZm-Ns-zmi" firstAttribute="centerX" secondItem="JS9-fp-u8X" secondAttribute="centerX" id="w6f-g1-6J0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -132,6 +127,7 @@
     </scenes>
     <resources>
         <image name="back" width="283.5" height="402"/>
+        <image name="clear" catalog="system" width="128" height="114"/>
         <image name="person.crop.circle.badge.minus" catalog="system" width="128" height="101"/>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="101"/>
     </resources>
