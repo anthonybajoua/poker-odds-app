@@ -20,6 +20,8 @@
 		927BF5A8261A81AD0066A48B /* Table.mm in Sources */ = {isa = PBXBuildFile; fileRef = 927BF5A6261A81AD0066A48B /* Table.mm */; };
 		927BF5AF261A88640066A48B /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF5AE261A88640066A48B /* Deck.m */; };
 		927BF5B0261A88640066A48B /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF5AE261A88640066A48B /* Deck.m */; };
+		927E14D32643A5720022EB22 /* UIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 927E14D22643A5720022EB22 /* UIHelper.m */; };
+		927E14DF2643A8880022EB22 /* CardButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 927E14DE2643A8880022EB22 /* CardButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,10 @@
 		927BF5A6261A81AD0066A48B /* Table.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Table.mm; sourceTree = "<group>"; };
 		927BF5AD261A88640066A48B /* Deck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		927BF5AE261A88640066A48B /* Deck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
+		927E14D12643A5720022EB22 /* UIHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIHelper.h; sourceTree = "<group>"; };
+		927E14D22643A5720022EB22 /* UIHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
+		927E14DD2643A8880022EB22 /* CardButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardButton.h; sourceTree = "<group>"; };
+		927E14DE2643A8880022EB22 /* CardButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +119,8 @@
 		927BF561261A80D20066A48B = {
 			isa = PBXGroup;
 			children = (
+				927E14DD2643A8880022EB22 /* CardButton.h */,
+				927E14DE2643A8880022EB22 /* CardButton.m */,
 				927BF56C261A80D20066A48B /* poker-odds */,
 				927BF588261A80D90066A48B /* poker-oddsTests */,
 				927BF593261A80D90066A48B /* poker-oddsUITests */,
@@ -147,6 +155,8 @@
 				927BF576261A80D20066A48B /* Main.storyboard */,
 				927BF579261A80D80066A48B /* Assets.xcassets */,
 				927BF57B261A80D80066A48B /* LaunchScreen.storyboard */,
+				927E14D12643A5720022EB22 /* UIHelper.h */,
+				927E14D22643A5720022EB22 /* UIHelper.m */,
 				927BF57E261A80D80066A48B /* Info.plist */,
 				927BF57F261A80D80066A48B /* main.m */,
 			);
@@ -306,6 +316,8 @@
 				927BF56F261A80D20066A48B /* AppDelegate.m in Sources */,
 				927BF580261A80D80066A48B /* main.m in Sources */,
 				927BF5A7261A81AD0066A48B /* Table.mm in Sources */,
+				927E14DF2643A8880022EB22 /* CardButton.m in Sources */,
+				927E14D32643A5720022EB22 /* UIHelper.m in Sources */,
 				927BF572261A80D20066A48B /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -477,6 +489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R38YSAACD6;
 				INFOPLIST_FILE = "poker-odds/Info.plist";
@@ -484,8 +497,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.me.poker-odds";
+				PRODUCT_BUNDLE_IDENTIFIER = "anthonybajoua-poker-odds";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -494,15 +508,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = R38YSAACD6;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "poker-odds/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.me.poker-odds";
+				PRODUCT_BUNDLE_IDENTIFIER = "anthonybajoua-poker-odds";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

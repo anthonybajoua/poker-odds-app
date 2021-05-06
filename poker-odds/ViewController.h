@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIHelper.h"
+
 
 @interface ViewController : UIViewController
 

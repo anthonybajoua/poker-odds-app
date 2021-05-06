@@ -24,6 +24,9 @@
                                     <constraint firstAttribute="height" constant="88" id="bDy-ea-Bcn"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
+                                <connections>
+                                    <action selector="addCardToTable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YiM-kf-fe1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oU6-Jb-wiV" userLabel="flop2" customClass="CardButton">
                                 <rect key="frame" x="113" y="89" width="56" height="88"/>
@@ -34,6 +37,9 @@
                                     <constraint firstAttribute="height" constant="88" id="vov-Lv-869"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
+                                <connections>
+                                    <action selector="addCardToTable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oZN-oM-G8g"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7D4-R9-ONe" userLabel="turn" customClass="CardButton">
                                 <rect key="frame" x="245" y="89" width="56" height="88"/>
@@ -64,6 +70,9 @@
                                     <constraint firstAttribute="height" constant="88" id="vm5-O1-l36"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="back"/>
+                                <connections>
+                                    <action selector="addCardToTable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mR9-OI-ZiF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl0-YP-GQb" userLabel="Add Player">
                                 <rect key="frame" x="344" y="812" width="50" height="50"/>
@@ -96,7 +105,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.064753261076405388" green="0.78039215689999997" blue="0.096245812441441633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.091116659343242645" green="0.44646084308624268" blue="0.09515862911939621" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                         <accessibility key="accessibilityConfiguration" identifier="PokerTable" label="PokerTable"/>
                         <constraints>
