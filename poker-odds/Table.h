@@ -4,15 +4,16 @@
 
 @interface Table : NSObject
 
-@property NSUInteger numPlayers;
-@property NSMutableArray *winTallies;
-@property NSMutableArray *tieTallies;
 @property Deck *deck;
 
-
-- (id) initWithPlayers:(NSUInteger) players;
+- (instancetype) init:(NSUInteger) players;
 
 - (void) playGame;
 
+- (void) setNumSimulations:(NSInteger)sims;
+
+- (NSArray *) getWinPercentages;
+
+- (NSArray *) getTiePercentages;
 
 @end

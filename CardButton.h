@@ -9,11 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
 
-
+extern const int cardWidth;
+extern const int cardHeight;
 
 /**Simple UIButton with a variable for the current card it contains.*/
 @interface CardButton : UIButton
-@property (nullable) NSString *currentCard;
+
+@property (strong, nullable) NSString *currentCard;
+
+-(void) setAction;
+
 @end
 
 

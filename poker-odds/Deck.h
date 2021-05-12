@@ -17,7 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (id) init;
 - (void) shuffle;
 - (uint8_t) drawCard;
-- (NSString*) stringForCard:(uint8_t) num;
+- (NSString*) getCardName:(uint8_t) num;
+- (NSInteger) getCardNumber:(NSString *) name;
+
 
 @end
 

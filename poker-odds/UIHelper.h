@@ -12,17 +12,31 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+extern const NSInteger kNumPlayersDefault;
+extern const NSInteger kNumPlayersMax;
+extern const NSInteger kNumPlayersMin;
 
 /** This class is concerned with creating all subviews the main view needs.*/
 @interface UIHelper : NSObject
-
 @property (atomic, strong) UIStackView *playerStackView;
 @property (atomic, strong) UIScrollView *playerScrollView;
 
+/**Creates the main view used for the UI*/
+- (void) completePlayerScrollView:(UIScrollView *) scrollView;
 
-- (UIView *) createPlayerScrollViewWithStackView:(UIStackView*) stackView;
-
+/**Clears all the cards from the selected view also reshuffling them back into the deck.*/
 - (void) deleteCardsFromView:(UIView*) view;
+
+/** Creates the alert to be displayed to the user to select their card and calls back to the view controller in the completion to display it.*/
+-(void) getInputForButton:(id)sender
+           withCompletion:(void (^)(UIAlertController*)) completion;
+
+
+/**Adds a player if below the limit of 10*/
+-(void) addPlayer;
+
+/**Removes a player if above the limit of 2*/
+-(void) removePlayer;
 
 
 

@@ -3,6 +3,12 @@
 #import "Deck.h"
 #import "SKPokerEval/SevenEval.h"
 
+const int kMaxPlayers = 10;
+const int kCardsPerHand = 2;
+const int kCardsOnTable = 5;
+const long kNumSimulationsDefault = 500000;
+const long kDefaultPlayers = 3;
+
 
 @implementation Table : NSObject
 
@@ -23,33 +29,101 @@ typedef NS_ENUM(NSUInteger, HandRanking) {
 BOOL didFlop;
 BOOL didTurn;
 BOOL didRiver;
+BOOL finishedSim;
 
-NSMutableArray *kickers;
-NSMutableArray *handRankings;
+uint8_t tableCards[kCardsOnTable];
+uint8_t holeCards[kCardsPerHand*kMaxPlayers];
 
-uint8_t tableCards[5];
-uint8_t holeCards[20];
+int winCounts[kMaxPlayers];
+int tieCounts[kMaxPlayers];
+
+long numSimulations = kNumSimulationsDefault;
+uint8_t numPlayers = kDefaultPlayers;
 
 
-
-- (id) initWithPlayers:(NSUInteger) players {
+- (instancetype) init {
     if ( self = [super init] ) {
-        _numPlayers = players;
         _deck = [[Deck alloc ]init];
-        _winTallies = [NSMutableArray arrayWithCapacity:_numPlayers];
         [self deal];
         return self;
     }
     return nil;
 }
 
+- (void) playGame {
+    if (!didFlop) [self doFlop];
+    if (!didTurn) [self doTurn];
+    if (!didRiver) [self doRiver];
+    
+    [self logBoard];
+    [self logHands];
+    
+    int rankings[10];
+    
+    //Get best hand ranking
+    int best = -1;
+    
+    uint8_t count = 0;
+    uint8_t numWinners = 0;
+    
+    for (int i = 0; i < numPlayers; i++) {
+        uint8_t c6 = holeCards[count++];
+        uint8_t c7 = holeCards[count++];
+        
+        int handRanking = SevenEval::GetRank(tableCards[0], tableCards[1], tableCards[2], tableCards[3], tableCards[4], c6, c7);
+        
+        rankings[i] = handRanking;
+        if (handRanking > best) {
+            best = handRanking;
+            numWinners = 1;
+        } else if (handRanking == best) {
+            numWinners++;
+        }
+    }
+        
+    if (numWinners == 1) {
+        for (int i = 0; i < numPlayers; i++) {
+            winCounts[i]++;
+        }
+    } else {
+        for (int i = 0; i < numPlayers; i++) {
+            tieCounts[i]++;
+        }
+    }
+    
+    [_deck shuffle];
+    didRiver = didFlop = didTurn = NO;
+    [self deal];
+}
+
+- (void) setNumSimulations:(NSInteger)sims {
+    numSimulations = sims;
+}
+
+- (NSArray *) getWinPercentages {
+    NSMutableArray *winPercentages = [NSMutableArray array];
+    for (int i = 0; i < numPlayers; i++)
+    {
+        [winPercentages addObject:@(winCounts[i] / (float) numSimulations)];
+    }
+    return winPercentages;
+}
+
+- (NSArray *) getTiePercentages {
+    NSMutableArray *tiePercentages = [NSMutableArray array];
+    for (int i = 0; i < numPlayers ; i++)
+    {
+        [tiePercentages addObject:@(winCounts[i] / (float) numSimulations)];
+    }
+    return tiePercentages;
+}
+
 - (void) deal {
     int count = 0;
-    for (int i = 0; i < _numPlayers; i++) {
+    for (int i = 0; i < numPlayers; i++) {
         holeCards[count++] = [_deck drawCard];
         holeCards[count++] = [_deck drawCard];
     }
-    
 }
 
 - (void) doFlop {
@@ -57,6 +131,7 @@ uint8_t holeCards[20];
         [_deck drawCard];
         for (int i = 0; i < 3; i++) {
             tableCards[i] = [_deck drawCard];
+            didFlop = YES;
         }
     }
 }
@@ -77,68 +152,26 @@ uint8_t holeCards[20];
     }
 }
 
-- (void) playGame {
-    if (!didFlop) [self doFlop];
-    if (!didTurn) [self doTurn];
-    if (!didRiver) [self doRiver];
-    
-    
-    uint8_t c1, c2, c3, c4, c5, c6, c7;
-    c1 = tableCards[0];
-    c2 = tableCards[1];
-    c3 = tableCards[2];
-    c4 = tableCards[3];
-    c5 = tableCards[4];
-
-    
-    [self logBoard];
-    [self logHands];
-    
-    NSMutableDictionary *scores = [NSMutableDictionary dictionary];
-
-    int count = 0;
-    for (int i = 0; i < _numPlayers; i++) {
-        c6 = holeCards[count++];
-        c7 = holeCards[count++];
-        
-        NSValue *handRanking = [NSNumber numberWithUnsignedInt:SevenEval::GetRank(c1, c2, c3, c4, c5, c6, c7)];
-        NSValue *player = [NSNumber numberWithInt:i];
-        
-        if (NSMutableArray *playersWithScore = [scores objectForKey:handRanking.description]) {
-            [playersWithScore addObject:player];
-        } else {
-            [scores setValue:[NSMutableArray arrayWithObject:player] forKey:handRanking.description];
-        }
-    }
-    
-    NSArray *winners = [scores objectForKey:[[scores allKeys] valueForKeyPath:@"@max.self"]];
-        
-    
-    [_deck shuffle];
-    didRiver = didFlop = didTurn = NO;
-    [self deal];
-}
-
 - (void) logBoard {
-    NSString *s1, *s2, *s3, *s4, *s5;
-    s1 = [_deck stringForCard:tableCards[0]];
-    s2 = [_deck stringForCard:tableCards[1]];
-    s3 = [_deck stringForCard:tableCards[2]];
-    s4 = [_deck stringForCard:tableCards[3]];
-    s5 = [_deck stringForCard:tableCards[4]];
-    NSLog(@"TABLE CARDS: %@ %@ %@ %@ %@", s1, s2, s3, s4, s5);
+    NSString *s0, *s1, *s2, *s3, *s4;
+    s0 = [_deck getCardName:tableCards[0]];
+    s1 = [_deck getCardName:tableCards[1]];
+    s2 = [_deck getCardName:tableCards[2]];
+    s3 = [_deck getCardName:tableCards[3]];
+    s4 = [_deck getCardName:tableCards[4]];
+    NSLog(@"TABLE CARDS: %@ %@ %@ %@ %@", s0, s1, s2, s3, s4);
 }
 
 - (void) logHands {
     int count = 0;
-    for (int i = 0; i < _numPlayers; i++) {
-        NSString *card0 = [_deck stringForCard:holeCards[count++]];
-        NSString *card1 = [_deck stringForCard:holeCards[count++]];
+    for (int i = 0; i < numPlayers; i++) {
+        NSString *card0 = [_deck getCardName:holeCards[count++]];
+        NSString *card1 = [_deck getCardName:holeCards[count++]];
         NSLog(@"Player %d : %@ %@", i, card0, card1);
     }
 }
 
--(void) reset {
+- (void) reset {
     [_deck shuffle];
     didRiver = didFlop = didTurn = NO;
     [self deal];
@@ -146,5 +179,3 @@ uint8_t holeCards[20];
 
 
 @end
-
-
