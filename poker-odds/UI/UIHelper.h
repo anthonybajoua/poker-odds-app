@@ -9,12 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "CardButton.h"
+#import "Table.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-extern const NSInteger kNumPlayersDefault;
-extern const NSInteger kNumPlayersMax;
-extern const NSInteger kNumPlayersMin;
 
 /** This class is concerned with creating all subviews the main view needs.*/
 @interface UIHelper : NSObject
@@ -37,8 +34,6 @@ extern const NSInteger kNumPlayersMin;
 
 /**Removes a player if above the limit of 2*/
 -(void) removePlayer;
-
-
 
 @end
 

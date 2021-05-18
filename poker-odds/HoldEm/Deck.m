@@ -7,17 +7,14 @@
 //
 
 #import "Deck.h"
-#import "SKPokerEval/Constants.h"
+#import "Constants.h"
 
 @implementation Deck
 
-const NSInteger DECKSIZE = 52;
 
 NSMutableDictionary *nameToNumber, *numberToName;
 int location;
 uint_fast32_t cards[52];
-
-
 
 - (id) init {
     if ( self = [super init] ) {
@@ -56,8 +53,8 @@ uint_fast32_t cards[52];
                 
                 
                 NSString *cardName = [NSString stringWithFormat:@"%@ of %@", rank, suit];
-                
-                [numberToName setValue:cardName forKey:cardValue];
+                                
+                [numberToName setValue:cardName forKey:cardValue.description];
                 [nameToNumber setValue:cardValue forKey:cardName];
 
             }
@@ -73,9 +70,9 @@ uint_fast32_t cards[52];
 - (void) shuffle {
     location = 52;
     for (int i = 51; i > 0; --i) {
-        uint8_t temp = cards[i];
         int swapSpot = arc4random_uniform(i + 1);
         
+        uint8_t temp = cards[i];
         cards[i] = cards[swapSpot];
         cards[swapSpot] = temp;
     }
@@ -86,11 +83,11 @@ uint_fast32_t cards[52];
 }
 
 - (NSString*) getCardName:(uint8_t) num {
-    return [numberToName objectForKey:[NSNumber numberWithInt:num]];
+    return [numberToName objectForKey:[NSNumber numberWithInt:num].description];
 }
 
 - (NSInteger) getCardNumber:(NSString *) name {
-    return [[nameToNumber objectForKey:name] intValue];
+    return [[nameToNumber objectForKey:name] longValue];
 }
 
 -(void) removeCard:(NSString *)name {

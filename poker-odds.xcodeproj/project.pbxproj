@@ -75,6 +75,7 @@
 		927E14D22643A5720022EB22 /* UIHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIHelper.m; sourceTree = "<group>"; };
 		927E14DD2643A8880022EB22 /* CardButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CardButton.h; sourceTree = "<group>"; };
 		927E14DE2643A8880022EB22 /* CardButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CardButton.m; sourceTree = "<group>"; };
+		92C3EF27264BD812006ABEB0 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,8 +121,6 @@
 		927BF561261A80D20066A48B = {
 			isa = PBXGroup;
 			children = (
-				927E14DD2643A8880022EB22 /* CardButton.h */,
-				927E14DE2643A8880022EB22 /* CardButton.m */,
 				927BF56C261A80D20066A48B /* poker-odds */,
 				927BF588261A80D90066A48B /* poker-oddsTests */,
 				927BF593261A80D90066A48B /* poker-oddsUITests */,
@@ -142,22 +141,10 @@
 		927BF56C261A80D20066A48B /* poker-odds */ = {
 			isa = PBXGroup;
 			children = (
+				92C3EF31264BD873006ABEB0 /* HoldEm */,
+				92C3EF30264BD840006ABEB0 /* UI */,
 				9224535D261AE82800223BE3 /* seven-eval */,
-				927BF56D261A80D20066A48B /* AppDelegate.h */,
-				927BF5A2261A81210066A48B /* Table.h */,
-				927BF5A6261A81AD0066A48B /* Table.mm */,
-				927BF5AD261A88640066A48B /* Deck.h */,
-				927BF5AE261A88640066A48B /* Deck.m */,
-				927BF56E261A80D20066A48B /* AppDelegate.m */,
-				927BF570261A80D20066A48B /* SceneDelegate.h */,
-				927BF571261A80D20066A48B /* SceneDelegate.m */,
-				927BF573261A80D20066A48B /* ViewController.h */,
-				927BF574261A80D20066A48B /* ViewController.m */,
-				927BF576261A80D20066A48B /* Main.storyboard */,
 				927BF579261A80D80066A48B /* Assets.xcassets */,
-				927BF57B261A80D80066A48B /* LaunchScreen.storyboard */,
-				927E14D12643A5720022EB22 /* UIHelper.h */,
-				927E14D22643A5720022EB22 /* UIHelper.m */,
 				927BF57E261A80D80066A48B /* Info.plist */,
 				927BF57F261A80D80066A48B /* main.m */,
 			);
@@ -180,6 +167,37 @@
 				927BF596261A80D90066A48B /* Info.plist */,
 			);
 			path = "poker-oddsUITests";
+			sourceTree = "<group>";
+		};
+		92C3EF30264BD840006ABEB0 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				927E14DD2643A8880022EB22 /* CardButton.h */,
+				927E14DE2643A8880022EB22 /* CardButton.m */,
+				927BF56D261A80D20066A48B /* AppDelegate.h */,
+				927BF56E261A80D20066A48B /* AppDelegate.m */,
+				927BF570261A80D20066A48B /* SceneDelegate.h */,
+				927BF571261A80D20066A48B /* SceneDelegate.m */,
+				927BF573261A80D20066A48B /* ViewController.h */,
+				927BF574261A80D20066A48B /* ViewController.m */,
+				927BF576261A80D20066A48B /* Main.storyboard */,
+				927BF57B261A80D80066A48B /* LaunchScreen.storyboard */,
+				927E14D12643A5720022EB22 /* UIHelper.h */,
+				927E14D22643A5720022EB22 /* UIHelper.m */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		92C3EF31264BD873006ABEB0 /* HoldEm */ = {
+			isa = PBXGroup;
+			children = (
+				92C3EF27264BD812006ABEB0 /* Macros.h */,
+				927BF5A2261A81210066A48B /* Table.h */,
+				927BF5A6261A81AD0066A48B /* Table.mm */,
+				927BF5AD261A88640066A48B /* Deck.h */,
+				927BF5AE261A88640066A48B /* Deck.m */,
+			);
+			path = HoldEm;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -1,8 +1,15 @@
 #import <Foundation/Foundation.h>
 #import "Table.h"
-#import "Deck.h"
-#import "SKPokerEval/SevenEval.h"
+//Must import here b/c it's a  C++ file
+#import "SevenEval.h"
 
+
+//External
+const NSInteger kNumPlayersDefault = 3;
+const NSInteger kNumPlayersMax = 10;
+const NSInteger kNumPlayersMin = 2;
+
+//Internal
 const int kMaxPlayers = 10;
 const int kCardsPerHand = 2;
 const int kCardsOnTable = 5;
@@ -39,7 +46,6 @@ int tieCounts[kMaxPlayers];
 
 long numSimulations = kNumSimulationsDefault;
 uint8_t numPlayers = kDefaultPlayers;
-
 
 - (instancetype) init {
     if ( self = [super init] ) {
@@ -96,10 +102,6 @@ uint8_t numPlayers = kDefaultPlayers;
     [self deal];
 }
 
-- (void) setNumSimulations:(NSInteger)sims {
-    numSimulations = sims;
-}
-
 - (NSArray *) getWinPercentages {
     NSMutableArray *winPercentages = [NSMutableArray array];
     for (int i = 0; i < numPlayers; i++)
@@ -118,21 +120,34 @@ uint8_t numPlayers = kDefaultPlayers;
     return tiePercentages;
 }
 
-- (void) deal {
-    int count = 0;
+- (void) reset {
+    [_deck shuffle];
+    didRiver = didFlop = didTurn = NO;
+
     for (int i = 0; i < numPlayers; i++) {
-        holeCards[count++] = [_deck drawCard];
-        holeCards[count++] = [_deck drawCard];
+        tieCounts[i] = 0;
+        winCounts[i] = 0;
+    }
+    
+    [self deal];
+}
+
+
+#pragma mark - Helpers
+
+- (void) deal {
+    for (int i = 0; i < (kCardsPerHand * numPlayers); i++) {
+        holeCards[i++] = [_deck drawCard];
+        holeCards[i++] = [_deck drawCard];
     }
 }
 
 - (void) doFlop {
     if (!didFlop) {
         [_deck drawCard];
-        for (int i = 0; i < 3; i++) {
-            tableCards[i] = [_deck drawCard];
-            didFlop = YES;
-        }
+        tableCards[0] = [_deck drawCard];
+        tableCards[1] = [_deck drawCard];
+        tableCards[2] = [_deck drawCard];
     }
 }
 
@@ -170,12 +185,5 @@ uint8_t numPlayers = kDefaultPlayers;
         NSLog(@"Player %d : %@ %@", i, card0, card1);
     }
 }
-
-- (void) reset {
-    [_deck shuffle];
-    didRiver = didFlop = didTurn = NO;
-    [self deal];
-}
-
 
 @end

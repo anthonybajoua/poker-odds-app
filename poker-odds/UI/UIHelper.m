@@ -8,20 +8,19 @@
 
 #import "UIHelper.h"
 
-@implementation UIHelper
+@implementation UIHelper {
+    long numPlayers;
+};
 
-const NSInteger kNumPlayersDefault = 8;
-const NSInteger kNumPlayersMax = 10;
-const NSInteger kNumPlayersMin = 2;
 UIImage * backImg;
 NSDictionary *nameDictionary;
 
-int numPlayers = 0;
 int screenWidth;
 NSMutableArray *playerViews;
 
 - (instancetype) init {
     if (self = [super init]) {
+        numPlayers = kNumPlayersDefault;
         playerViews = [NSMutableArray array];
         backImg = [UIImage imageNamed:@"back"];
         
@@ -134,7 +133,7 @@ NSMutableArray *playerViews;
     playerId.font = winPercentage.font = tiePercentage.font = equity.font = [UIFont fontWithName:@"Courier" size:12];
     
     
-    [playerId setText:[NSNumber numberWithInt:numPlayers].description];
+    [playerId setText:[NSNumber numberWithLong:numPlayers].description];
     [winPercentage setText:@"Win %:"];
     [tiePercentage setText:@"Tie %:"];
     [equity setText:@"Equity %:"];
