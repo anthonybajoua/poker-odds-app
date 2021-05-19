@@ -1,70 +1,91 @@
 #import <Foundation/Foundation.h>
 #import "Table.h"
-//Must import here b/c it's a  C++ file
 #import "SevenEval.h"
 
-
-//External
+/// External
 const NSInteger kNumPlayersDefault = 3;
 const NSInteger kNumPlayersMax = 10;
 const NSInteger kNumPlayersMin = 2;
 
-//Internal
+/// Internal
 const int kMaxPlayers = 10;
 const int kCardsPerHand = 2;
 const int kCardsOnTable = 5;
 const long kNumSimulationsDefault = 500000;
-const long kDefaultPlayers = 3;
-
+const uint_fast8_t kEmpty = UINT_FAST8_MAX;
 
 @implementation Table : NSObject
 
-typedef NS_ENUM(NSUInteger, HandRanking) {
-    kHighCard,
-    kPair,
-    kTwoPair,
-    kThreeOfAKind,
-    kStraight,
-    kFlush,
-    kFullHouse,
-    kFourOfAKind,
-    kStraightFlush,
-    kRoyalFlush
-};
-
-
-BOOL didFlop;
-BOOL didTurn;
-BOOL didRiver;
+//State for game
 BOOL finishedSim;
+uint_fast8_t tableCards[kCardsOnTable];
+uint_fast8_t holeCards[kCardsPerHand*kMaxPlayers];
 
-uint8_t tableCards[kCardsOnTable];
-uint8_t holeCards[kCardsPerHand*kMaxPlayers];
+uint_fast8_t fixedHoleCards[kCardsPerHand*kMaxPlayers];
+uint_fast8_t fixedTableCards[kCardsOnTable];
 
 int winCounts[kMaxPlayers];
 int tieCounts[kMaxPlayers];
+int rankings[kMaxPlayers];
 
-long numSimulations = kNumSimulationsDefault;
-uint8_t numPlayers = kDefaultPlayers;
+//Configuration for table
+long numSimulations;
+uint8_t numPlayers;
+uint8_t numCardsOnTable;
 
 - (instancetype) init {
     if ( self = [super init] ) {
         _deck = [[Deck alloc ]init];
-        [self deal];
+        numPlayers = kNumPlayersDefault;
+        numSimulations = kNumSimulationsDefault;
+        
+        for (int i = 0; i < kNumPlayersMax; i++) {
+            holeCards[(2*i)] = kEmpty;
+            holeCards[(2*i)+1] = kEmpty;
+        }
+        
+        for (int i = 0; i < kCardsOnTable; i++) {
+            tableCards[i] = kEmpty;
+        }
+        
         return self;
     }
     return nil;
 }
 
+- (NSArray *) simulate {
+    
+    for (int i = 0; i < numSimulations; i++) {
+        [self playGame];
+        [_deck shuffle];
+    }
+    NSArray *result =  [NSArray arrayWithObjects:[self getTiePercentages], [self getWinPercentages], nil];
+    
+    for (int i = 0; i < kCardsOnTable; i++) {
+        if (!fixedTableCards[i]) {
+            tableCards[i] = kEmpty;
+        }
+    }
+    
+    for (int i = 0; i < kNumPlayersMax * kCardsPerHand; i++) {
+        if (!fixedHoleCards[i]) {
+            holeCards[i] = kEmpty;
+        }
+    }
+    
+    for (int i = 0; i < kNumPlayersMax; i++) {
+        tieCounts[i] = winCounts[i] = 0;
+    }
+    return result;
+}
+
 - (void) playGame {
-    if (!didFlop) [self doFlop];
-    if (!didTurn) [self doTurn];
-    if (!didRiver) [self doRiver];
+    [self deal];
+    [self flopRiverTurn];
     
-    [self logBoard];
-    [self logHands];
+//    [self logBoard];
+//    [self logHands];
     
-    int rankings[10];
     
     //Get best hand ranking
     int best = -1;
@@ -73,8 +94,16 @@ uint8_t numPlayers = kDefaultPlayers;
     uint8_t numWinners = 0;
     
     for (int i = 0; i < numPlayers; i++) {
-        uint8_t c6 = holeCards[count++];
-        uint8_t c7 = holeCards[count++];
+        uint8_t c6 = holeCards[count];
+        uint8_t c7 = holeCards[count + 1];
+        
+        //Reset the cards that aren't fixed.
+        if (!fixedHoleCards[count]) {
+            holeCards[count] = kEmpty;
+        }
+        if (!fixedHoleCards[count+1]){
+            holeCards[count+1] = kEmpty;
+        }
         
         int handRanking = SevenEval::GetRank(tableCards[0], tableCards[1], tableCards[2], tableCards[3], tableCards[4], c6, c7);
         
@@ -85,28 +114,117 @@ uint8_t numPlayers = kDefaultPlayers;
         } else if (handRanking == best) {
             numWinners++;
         }
-    }
         
+        count += 2;
+    }
+    
+    int *toModify;
     if (numWinners == 1) {
-        for (int i = 0; i < numPlayers; i++) {
-            winCounts[i]++;
-        }
+        toModify = winCounts;
     } else {
-        for (int i = 0; i < numPlayers; i++) {
-            tieCounts[i]++;
+        toModify = tieCounts;
+    }
+    
+    for (int i = 0; i < numPlayers; i++) {
+        if (rankings[i] == best) {
+            toModify[i] = toModify[i] + 1;
         }
     }
     
-    [_deck shuffle];
-    didRiver = didFlop = didTurn = NO;
-    [self deal];
+    for (int i = 0; i < kCardsOnTable; i++) {
+        if (!fixedTableCards[i]) {
+            tableCards[i] = kEmpty;
+        }
+    }
 }
+
+- (void) reset {
+    [_deck reset];
+    numCardsOnTable = 0;
+
+    for (int i = 0; i < numPlayers; i++) {
+        tieCounts[i] = 0;
+        winCounts[i] = 0;
+        holeCards[(2*i)] = kEmpty;
+        holeCards[(2*i) + 1] = kEmpty;
+    }
+    tableCards[0] = tableCards[1] = tableCards[2] = tableCards[3] = tableCards[4] = kEmpty;
+}
+
+
+- (void) addPlayer {
+    numPlayers++;
+}
+
+- (void) removePlayer {
+    numPlayers--;
+}
+
+- (void) addCardToTable:(NSString *) card {
+    [_deck removeFromDeck:card];
+    NSInteger cardNum = [_deck getCardNumber:card];
+    
+    fixedTableCards[numCardsOnTable] = 1;
+    tableCards[numCardsOnTable++] = cardNum;
+}
+
+- (void) removeCardFromTable:(NSString *) card {
+    [_deck addToDeck:card];
+    NSInteger cardNum = [_deck getCardNumber:card];
+    for (int i = 0; i < kCardsOnTable; i++) {
+        if (cardNum == tableCards[i]) {
+            tableCards[i] = kEmpty;
+            fixedTableCards[i] = 0;
+        }
+    }
+}
+
+- (void) addCard:(NSString *) card
+          toHand:(NSInteger) hand {
+    
+    
+    NSLog(@"Adding %@ to player %ld", card, (long)hand);
+    
+    if (holeCards[2*hand] == kEmpty) {
+        NSLog(@"Adding to slot 1");
+        [_deck removeFromDeck:card];
+        holeCards[2*hand] = [_deck getCardNumber:card];
+        fixedHoleCards[2*hand] = 1;
+    } else if (holeCards[(2*hand)+1] == kEmpty) {
+        NSLog(@"Adding to slot 2");
+        [_deck removeFromDeck:card];
+        holeCards[(2*hand) + 1] = [_deck getCardNumber:card];
+        fixedHoleCards[(2*hand) + 1] = 1;
+    }
+    
+}
+
+- (void) removeCard:(NSString *) card
+          fromHand:(NSInteger) hand {
+    NSLog(@"Removing %@ from player %ld", card, (long)hand);
+
+    uint_fast8_t target = [_deck getCardNumber:card];
+    if (holeCards[2*hand] == target) {
+        NSLog(@"Removing from slot 1");
+        holeCards[(2*hand)] = kEmpty;
+        fixedHoleCards[2*hand] = 0;
+
+        [_deck addToDeck:card];
+    } else if (holeCards[(2*hand)+1] == target) {
+        NSLog(@"Removing from slot 2");
+        fixedHoleCards[(2*hand) + 1] = 0;
+        holeCards[(2*hand) + 1] = kEmpty;
+        [_deck addToDeck:card];
+    }
+}
+
+#pragma mark - Internal
 
 - (NSArray *) getWinPercentages {
     NSMutableArray *winPercentages = [NSMutableArray array];
     for (int i = 0; i < numPlayers; i++)
     {
-        [winPercentages addObject:@(winCounts[i] / (float) numSimulations)];
+        [winPercentages addObject:@(100 * (winCounts[i] / (float) numSimulations))];
     }
     return winPercentages;
 }
@@ -115,55 +233,26 @@ uint8_t numPlayers = kDefaultPlayers;
     NSMutableArray *tiePercentages = [NSMutableArray array];
     for (int i = 0; i < numPlayers ; i++)
     {
-        [tiePercentages addObject:@(winCounts[i] / (float) numSimulations)];
+        [tiePercentages addObject:@(100 * (tieCounts[i] / (float) numSimulations))];
     }
     return tiePercentages;
 }
 
-- (void) reset {
-    [_deck shuffle];
-    didRiver = didFlop = didTurn = NO;
-
-    for (int i = 0; i < numPlayers; i++) {
-        tieCounts[i] = 0;
-        winCounts[i] = 0;
-    }
-    
-    [self deal];
-}
-
-
-#pragma mark - Helpers
-
+//Deals the cards to the table, ignoring the fixed cards.
 - (void) deal {
     for (int i = 0; i < (kCardsPerHand * numPlayers); i++) {
-        holeCards[i++] = [_deck drawCard];
-        holeCards[i++] = [_deck drawCard];
+        if (holeCards[i] == kEmpty) {
+            holeCards[i] = [_deck drawCard];
+        }
     }
 }
 
-- (void) doFlop {
-    if (!didFlop) {
-        [_deck drawCard];
-        tableCards[0] = [_deck drawCard];
-        tableCards[1] = [_deck drawCard];
-        tableCards[2] = [_deck drawCard];
-    }
-}
-
-- (void) doTurn {
-    if (!didTurn) {
-        [_deck drawCard];
-        tableCards[3] = [_deck drawCard];
-        didTurn = YES;
-    }
-}
-
-- (void) doRiver {
-    if (!didRiver) {
-        [_deck drawCard];
-        tableCards[4] = [_deck drawCard];
-        didRiver = YES;
+//Does all the dealing in poker, does not burn cards yet.
+- (void) flopRiverTurn {
+    for (int i = 0; i < kCardsOnTable; i++) {
+        if (tableCards[i] == kEmpty) {
+            tableCards[i] = [_deck drawCard];
+        }
     }
 }
 

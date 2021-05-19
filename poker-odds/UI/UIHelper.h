@@ -35,6 +35,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**Removes a player if above the limit of 2*/
 -(void) removePlayer;
 
+/**Simulates poker games and updates ui accordingly.*/
+-(void) simulate;
+
 @end
 
 NS_ASSUME_NONNULL_END

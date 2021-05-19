@@ -17,11 +17,24 @@ NSDictionary *nameDictionary;
 
 int screenWidth;
 NSMutableArray *playerViews;
+NSMutableArray *equities;
+NSMutableArray *ties;
+NSMutableArray *wins;
+NSMutableSet *cardsOnTable;
+Table *table;
+
 
 - (instancetype) init {
     if (self = [super init]) {
-        numPlayers = kNumPlayersDefault;
         playerViews = [NSMutableArray array];
+        equities = [NSMutableArray array];
+        ties = [NSMutableArray array];
+        wins = [NSMutableArray array];
+        table = [[Table alloc] init];
+        cardsOnTable = [NSMutableSet set];
+        
+        
+        
         backImg = [UIImage imageNamed:@"back"];
         
         nameDictionary = [[NSDictionary alloc] initWithObjects:[NSArray arrayWithObjects:
@@ -31,6 +44,28 @@ NSMutableArray *playerViews;
         
     }
     return self;
+}
+
+- (void) simulate {
+    
+    NSArray *results = [table simulate];
+    
+    NSArray *tieResults = [results objectAtIndex:0];
+    NSArray *winResults = [results objectAtIndex:1];
+    
+
+    NSLog(@"%@", winResults);
+    NSLog(@"%@", tieResults);
+    
+    
+    for (int i = 0; i < wins.count; i++) {
+        
+        NSString *winPercent = [[winResults objectAtIndex:i] description];
+        NSString *tiePercent = [[tieResults objectAtIndex:i] description];
+
+        ((UITextField *) [wins objectAtIndex:i]).text = [NSString stringWithFormat:@"Win %% %@", winPercent];
+        ((UITextField *) [ties objectAtIndex:i]).text = [NSString stringWithFormat:@"Tie %% %@", tiePercent];
+    }
 }
 
 #pragma mark player scroll view creation
@@ -79,8 +114,6 @@ NSMutableArray *playerViews;
 #pragma mark player view creation
 
 - (UIView *) createPlayerView {
-    numPlayers++;
-
     UIView *playerView = [[UIView alloc] init];
     UITextField* playerId = [[UITextField alloc] init];
     UITextField* winPercentage = [[UITextField alloc] init];
@@ -90,7 +123,13 @@ NSMutableArray *playerViews;
     UIButton *fold = [[UIButton alloc] init];
     CardButton *button1 = [[CardButton alloc] init];
     CardButton *button2 = [[CardButton alloc] init];
+    button2.currentPlayer = numPlayers;
+    button1.currentPlayer = numPlayers;
+    button1.isPlayerCard = button2.isPlayerCard = YES;
     
+    [wins addObject:winPercentage];
+    [ties addObject:tiePercentage];
+    [equities addObject:equity];
     
     [playerView addSubview:resetButton];
     [playerView addSubview:fold];
@@ -171,6 +210,8 @@ NSMutableArray *playerViews;
     [button2.leadingAnchor constraintEqualToAnchor:button1.trailingAnchor constant:16].active = YES;
     
     [playerViews addObject:playerView];
+    
+    numPlayers++;
     return playerView;
 }
 
@@ -180,6 +221,7 @@ NSMutableArray *playerViews;
 
 - (void)resetCardsForPlayer:(UIButton *)sender {
     [self deleteCardsFromView:[sender superview]];
+    [table reset];
 }
 
 - (void)deleteCardsFromView:(UIView*)view {
@@ -190,7 +232,14 @@ NSMutableArray *playerViews;
         if ([insideView isKindOfClass:[CardButton class]]) {
             CardButton *btn = (CardButton*) insideView;
             if (btn.currentCard) {
-//                [cardsOnTable removeObject:btn.currentCard];
+                [cardsOnTable removeObject:btn.currentCard];
+                
+                if (btn.isPlayerCard) {
+                    [table removeCard:btn.currentCard fromHand:btn.currentPlayer];
+                } else {
+                    [table removeCardFromTable:btn.currentCard];
+                }
+                
                 [btn setBackgroundImage:backImg forState:UIControlStateNormal];
                 [btn setBackgroundColor:[UIColor whiteColor]];
             }
@@ -206,16 +255,24 @@ NSMutableArray *playerViews;
     if (numPlayers < kNumPlayersMax) {
         UIView *playerView = [self createPlayerView];
         [_playerStackView addArrangedSubview:playerView];
+        [table addPlayer];
     }
 }
 
 -(void) removePlayer {
     if (numPlayers > kNumPlayersMin) {
+        
+        [wins removeLastObject];
+        [equities removeLastObject];
+        [ties removeLastObject];
+        
         UIView *viewToRemove = [playerViews objectAtIndex:playerViews.count - 1];
         [self deleteCardsFromView:viewToRemove];
         [viewToRemove removeFromSuperview];
         [playerViews removeLastObject];
         numPlayers--;
+        
+        [table removePlayer];
     }
 }
 
@@ -255,8 +312,9 @@ NSMutableArray *playerViews;
             [alert dismissViewControllerAnimated:YES completion:nil];
         }];
 
-        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                   handler:^(UIAlertAction * action){
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK"
+                                                     style:UIAlertActionStyleDefault
+                                                   handler:^(UIAlertAction * action) {
             
             NSString *card, *rank, *suit;
             card = alert.textFields[0].text;
@@ -265,19 +323,22 @@ NSMutableArray *playerViews;
                 suit = [nameDictionary objectForKey:[[card substringFromIndex:card.length - 1] lowercaseString]];
                 if (rank && suit) {
                     card = [NSString stringWithFormat:@"%@_of_%@", rank, suit];
-                    [sender setBackgroundImage:[UIImage imageNamed:card] forState:UIControlStateNormal];
-                    btn.currentCard = card;
-//                    if (![cardsOnTable containsObject:card]) {
-//                        [sender setBackgroundImage:[UIImage imageNamed:card] forState:UIControlStateNormal];
-//                        [cardsOnTable addObject:card];
-//                        btn.currentCard = card;
-//                    } else {
-//                        //TODO
-//                    }
-                }
-            }
                     
-                                                   }];
+                    if (![cardsOnTable containsObject:card]) {
+                        [cardsOnTable addObject:card];
+                        [sender setBackgroundImage:[UIImage imageNamed:card] forState:UIControlStateNormal];
+                        btn.currentCard = card;
+                        
+                        if (btn.isPlayerCard) {
+                            [table addCard:card toHand:btn.currentPlayer];
+                        } else {
+                            [table addCardToTable:card];
+                        }
+                    }
+                }
+                
+            }
+        }];
 
         [alert addAction:ok];
         [alert addAction:cancel];
@@ -285,15 +346,23 @@ NSMutableArray *playerViews;
         [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
             textField.placeholder = @"Input card, e.g. ah, ac ... 5d, 5s ... jd ";
             textField.keyboardType = UIKeyboardTypeDefault;
+            
         }];
         
         completion(alert);
-//        [self presentViewController:alert animated:YES completion:nil];
 
     } else {
-        [sender setBackgroundImage:backImg forState:UIControlStateNormal];
-        [sender setBackgroundColor:[UIColor whiteColor]];
-//        [cardsOnTable removeObject:btn.currentCard];
+        [cardsOnTable removeObject:btn.currentCard];
+
+        [btn setBackgroundImage:backImg forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor whiteColor]];
+        
+        
+        if (btn.isPlayerCard) {
+            [table removeCard:btn.currentCard fromHand:btn.currentPlayer];
+        } else {
+            [table removeCardFromTable:btn.currentCard];
+        }
         btn.currentCard = nil;
     }
     

@@ -81,8 +81,8 @@
                                     <action selector="addCardToTable:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mR9-OI-ZiF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl0-YP-GQb" userLabel="Add Player">
-                                <rect key="frame" x="344" y="812" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl0-YP-GQb" userLabel="Add Player">
+                                <rect key="frame" x="354" y="837" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Quq-Aq-haO"/>
                                     <constraint firstAttribute="height" constant="50" id="bpI-OG-UQ9"/>
@@ -92,8 +92,8 @@
                                     <action selector="addPlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nbc-DY-GRY"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRS-zY-HMs" userLabel="Remove Player">
-                                <rect key="frame" x="20" y="812" width="50" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRS-zY-HMs" userLabel="Remove Player">
+                                <rect key="frame" x="20" y="837" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="bAr-u4-qaa"/>
                                     <constraint firstAttribute="width" constant="50" id="miY-av-Vmr"/>
@@ -103,12 +103,23 @@
                                     <action selector="removePlayer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eGh-xs-Fa3"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" restorationIdentifier="clear" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZm-Ns-zmi" userLabel="clear">
-                                <rect key="frame" x="188" y="36" width="38" height="39"/>
+                            <button opaque="NO" contentMode="scaleToFill" restorationIdentifier="clear" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UZm-Ns-zmi" userLabel="clear">
+                                <rect key="frame" x="197.5" y="10" width="19.5" height="54"/>
                                 <accessibility key="accessibilityConfiguration" identifier="clear" label="clear"/>
                                 <state key="normal" image="clear" catalog="system"/>
                                 <connections>
                                     <action selector="clearCards:" destination="BYZ-38-t0r" eventType="touchUpInside" id="92e-9J-QIv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BMn-4e-hzS">
+                                <rect key="frame" x="182" y="797" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="aek-EL-u2I"/>
+                                    <constraint firstAttribute="width" constant="50" id="yle-IC-nrz"/>
+                                </constraints>
+                                <state key="normal" image="play" catalog="system"/>
+                                <connections>
+                                    <action selector="simulate:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sBt-eT-GVb"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -123,13 +134,16 @@
                             <constraint firstItem="JS9-fp-u8X" firstAttribute="top" secondItem="UZm-Ns-zmi" secondAttribute="bottom" constant="25" id="Bqa-n5-VHS"/>
                             <constraint firstItem="oU6-Jb-wiV" firstAttribute="leading" secondItem="JlQ-1B-NNY" secondAttribute="trailing" constant="10" id="Htp-WA-Wt9"/>
                             <constraint firstItem="Cl0-YP-GQb" firstAttribute="centerY" secondItem="mRS-zY-HMs" secondAttribute="centerY" id="N9d-Tp-H2G"/>
-                            <constraint firstItem="mRS-zY-HMs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="NDW-LB-r1p"/>
                             <constraint firstItem="JS9-fp-u8X" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RBC-Ot-QU0"/>
-                            <constraint firstItem="mRS-zY-HMs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="WJi-SS-A6W"/>
                             <constraint firstItem="7D4-R9-ONe" firstAttribute="leading" secondItem="JS9-fp-u8X" secondAttribute="trailing" constant="10" id="X98-46-hbg"/>
+                            <constraint firstItem="UZm-Ns-zmi" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="10" id="ZDv-v3-SRR"/>
+                            <constraint firstItem="BMn-4e-hzS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="e3q-ah-C1r"/>
+                            <constraint firstItem="mRS-zY-HMs" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="25" id="hTg-5p-Mw5"/>
+                            <constraint firstItem="Cl0-YP-GQb" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="25" id="iJm-8h-YsT"/>
                             <constraint firstItem="7D4-R9-ONe" firstAttribute="centerY" secondItem="JS9-fp-u8X" secondAttribute="centerY" id="l5D-QO-Ivv"/>
                             <constraint firstItem="oU6-Jb-wiV" firstAttribute="centerY" secondItem="JS9-fp-u8X" secondAttribute="centerY" id="nKb-WG-0gx"/>
                             <constraint firstItem="JS9-fp-u8X" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="oZv-9s-xKJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="BMn-4e-hzS" secondAttribute="bottom" constant="15" id="qj0-IV-eME"/>
                             <constraint firstItem="JS9-fp-u8X" firstAttribute="leading" secondItem="oU6-Jb-wiV" secondAttribute="trailing" constant="10" id="s4b-CY-izA"/>
                             <constraint firstItem="JlQ-1B-NNY" firstAttribute="centerY" secondItem="JS9-fp-u8X" secondAttribute="centerY" id="sc0-87-Ia7"/>
                             <constraint firstItem="UZm-Ns-zmi" firstAttribute="centerX" secondItem="JS9-fp-u8X" secondAttribute="centerX" id="w6f-g1-6J0"/>
@@ -146,6 +160,7 @@
         <image name="clear" catalog="system" width="128" height="114"/>
         <image name="person.crop.circle.badge.minus" catalog="system" width="128" height="113"/>
         <image name="person.crop.circle.badge.plus" catalog="system" width="128" height="113"/>
+        <image name="play" catalog="system" width="120" height="128"/>
         <systemColor name="darkTextColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

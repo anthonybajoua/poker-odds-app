@@ -16,6 +16,8 @@ extern const int cardHeight;
 @interface CardButton : UIButton
 
 @property (strong, nullable) NSString *currentCard;
+@property NSInteger currentPlayer;
+@property BOOL isPlayerCard;
 
 -(void) setAction;
 

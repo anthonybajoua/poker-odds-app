@@ -52,6 +52,11 @@ UIHelper *uiHelper;
     [uiHelper addPlayer];
 }
 
+- (IBAction) simulate:(UIButton *)sender {
+    [uiHelper simulate];
+    
+}
+
 - (IBAction)addCardToTable:(id)sender {
     [uiHelper getInputForButton:sender
                  withCompletion:

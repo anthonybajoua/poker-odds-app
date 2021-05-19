@@ -8,13 +8,16 @@
 
 #import "Deck.h"
 #import "Constants.h"
+#import "Macros.h"
 
 @implementation Deck
 
 
 NSMutableDictionary *nameToNumber, *numberToName;
 int location;
-uint_fast32_t cards[52];
+int cardsLeft;
+
+uint_fast8_t cards[52];
 
 - (id) init {
     if ( self = [super init] ) {
@@ -22,44 +25,27 @@ uint_fast32_t cards[52];
         numberToName = [NSMutableDictionary dictionary];
 
         
-        NSDictionary<NSString *, NSNumber *> *ranks = @{
-            @"A": @ACE,
-            @"K": @KING,
-            @"Q": @QUEEN,
-            @"10": @TEN,
-            @"9": @NINE,
-            @"8": @EIGHT,
-            @"7": @SEVEN,
-            @"6": @SIX,
-            @"5": @FIVE,
-            @"4": @FOUR,
-            @"3": @THREE,
-            @"2": @TWO
-        };
+        NSArray *ranks = @[@"ace", @"king", @"queen", @"jack", @"10", @"9", @"8", @"7", @"6", @"5", @"4", @"3", @"2"];
+        NSArray *suits = @[@"spades", @"hearts", @"diamonds", @"clubs"];
         
-        NSDictionary<NSString *, NSNumber *> *suits = @{
-            @"SPADES": @SPADE,
-            @"HEARTS": @HEART,
-            @"DIAMONDS": @DIAMOND,
-            @"CLUBS": @CLUB
-        };
+        uint8_t count = 0;
         
-        for (id rank in [ranks allKeys]) {
-            for (id suit in [suits allKeys]) {
+        for (id rank in ranks) {
+            for (id suit in suits) {
                 
-                uint_fast32_t cardNum = [[ranks objectForKey:rank] intValue] + ([[suits objectForKey:suit] intValue] << FLUSH_BIT_SHIFT);
-                
-                NSNumber *cardValue = [NSNumber numberWithInt:cardNum];
+                cards[count] = count;
                 
                 
-                NSString *cardName = [NSString stringWithFormat:@"%@ of %@", rank, suit];
+                NSNumber *cardValue = [NSNumber numberWithInt:count];
+                NSString *cardName = [NSString stringWithFormat:@"%@_of_%@", rank, suit];
                                 
                 [numberToName setValue:cardName forKey:cardValue.description];
                 [nameToNumber setValue:cardValue forKey:cardName];
+                count++;
 
             }
         }
-    
+        location = cardsLeft = 51;
         [self shuffle];
         return self;
     }
@@ -68,14 +54,19 @@ uint_fast32_t cards[52];
 }
 
 - (void) shuffle {
-    location = 52;
-    for (int i = 51; i > 0; --i) {
+    location = cardsLeft;
+    for (int i = location; i > 0; --i) {
         int swapSpot = arc4random_uniform(i + 1);
         
         uint8_t temp = cards[i];
         cards[i] = cards[swapSpot];
         cards[swapSpot] = temp;
     }
+}
+
+- (void) reset {
+    location = 51;
+    [self shuffle];
 }
 
 -(uint8_t) drawCard {
@@ -90,17 +81,35 @@ uint_fast32_t cards[52];
     return [[nameToNumber objectForKey:name] longValue];
 }
 
--(void) removeCard:(NSString *)name {
-    if ([self getCardNumber:name]) {
+-(void) removeFromDeck:(NSString *)name {
+    NSInteger target = [self getCardNumber:name];
+    
+    if (target >= 0 && target <= 51) {
         for (int i = 0; i < 52; i++){
-            if (cards[i] == [self getCardNumber:name]) {
-                uint_fast32_t tmp = cards[location];
-                cards[location] = cards[i];
+            if (cards[i] == target) {
+                uint8_t tmp = cards[cardsLeft];
+                cards[cardsLeft] = target;
                 cards[i] = tmp;
-                location--;
             }
         }
     }
+    cardsLeft--;
+
+}
+
+
+-(void) addToDeck:(NSString *)name {
+    NSInteger target = [self getCardNumber:name];
+    if (target >= 0 && target <= 51) {
+        for (int i = location; i < 52; i++){
+            if (cards[i] == target) {
+                uint8_t tmp = cards[location + 1];
+                cards[location + 1] = cards[i];
+                cards[i] = tmp;
+            }
+        }
+    }
+    cardsLeft++;
 }
 
 @end
