@@ -1,0 +1,352 @@
+diff --git a/poker-odds.xcodeproj/project.pbxproj b/poker-odds.xcodeproj/project.pbxproj
+index 015ca91..dc37d20 100644
+--- a/poker-odds.xcodeproj/project.pbxproj
++++ b/poker-odds.xcodeproj/project.pbxproj
+@@ -7,6 +7,7 @@
+ 	objects = {
+ 
+ /* Begin PBXBuildFile section */
++		890E0C77275F0A4F0076087E /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 890E0C76275F0A4F0076087E /* PlayerView.m */; };
+ 		927BF56F261A80D20066A48B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF56E261A80D20066A48B /* AppDelegate.m */; };
+ 		927BF572261A80D20066A48B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF571261A80D20066A48B /* SceneDelegate.m */; };
+ 		927BF575261A80D20066A48B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF574261A80D20066A48B /* ViewController.m */; };
+@@ -42,6 +43,8 @@
+ /* End PBXContainerItemProxy section */
+ 
+ /* Begin PBXFileReference section */
++		890E0C75275F0A4F0076087E /* PlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
++		890E0C76275F0A4F0076087E /* PlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
+ 		92245353261AE68D00223BE3 /* RankOffsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankOffsets.h; sourceTree = "<group>"; };
+ 		92245354261AE68E00223BE3 /* Deckcards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deckcards.h; sourceTree = "<group>"; };
+ 		92245356261AE68E00223BE3 /* SevenEval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenEval.h; sourceTree = "<group>"; };
+@@ -172,6 +175,8 @@
+ 		92C3EF30264BD840006ABEB0 /* UI */ = {
+ 			isa = PBXGroup;
+ 			children = (
++				890E0C75275F0A4F0076087E /* PlayerView.h */,
++				890E0C76275F0A4F0076087E /* PlayerView.m */,
+ 				927E14DD2643A8880022EB22 /* CardButton.h */,
+ 				927E14DE2643A8880022EB22 /* CardButton.m */,
+ 				927BF56D261A80D20066A48B /* AppDelegate.h */,
+@@ -337,6 +342,7 @@
+ 				927BF5A7261A81AD0066A48B /* Table.mm in Sources */,
+ 				927E14DF2643A8880022EB22 /* CardButton.m in Sources */,
+ 				927E14D32643A5720022EB22 /* UIHelper.m in Sources */,
++				890E0C77275F0A4F0076087E /* PlayerView.m in Sources */,
+ 				927BF572261A80D20066A48B /* SceneDelegate.m in Sources */,
+ 			);
+ 			runOnlyForDeploymentPostprocessing = 0;
+diff --git a/poker-odds.xcodeproj/project.xcworkspace/xcuserdata/anthony.xcuserdatad/UserInterfaceState.xcuserstate b/poker-odds.xcodeproj/project.xcworkspace/xcuserdata/anthony.xcuserdatad/UserInterfaceState.xcuserstate
+index 8905774..eb91513 100644
+Binary files a/poker-odds.xcodeproj/project.xcworkspace/xcuserdata/anthony.xcuserdatad/UserInterfaceState.xcuserstate and b/poker-odds.xcodeproj/project.xcworkspace/xcuserdata/anthony.xcuserdatad/UserInterfaceState.xcuserstate differ
+diff --git a/poker-odds/HoldEm/Table.h b/poker-odds/HoldEm/Table.h
+index 41a9507..c4588bc 100644
+--- a/poker-odds/HoldEm/Table.h
++++ b/poker-odds/HoldEm/Table.h
+@@ -13,6 +13,10 @@ const extern NSInteger kNumPlayersMin;
+ 
+ @property Deck *deck;
+ @property NSInteger numSimulations;
++@property NSMutableArray *equities;
++@property NSMutableArray *ties;
++@property NSMutableArray *wins;
++@property NSMutableSet *cardsOnTable;
+ 
+ /**Simulates numSimulations games at the table at the given state. Returns an array of two arrays, the win counts and tie tie counts.*/
+ - (NSArray*) simulate;
+diff --git a/poker-odds/HoldEm/Table.mm b/poker-odds/HoldEm/Table.mm
+index 8537bd8..aab1f34 100644
+--- a/poker-odds/HoldEm/Table.mm
++++ b/poker-odds/HoldEm/Table.mm
+@@ -11,7 +11,7 @@
+ const int kMaxPlayers = 10;
+ const int kCardsPerHand = 2;
+ const int kCardsOnTable = 5;
+-const long kNumSimulationsDefault = 500000;
++const long kNumSimulationsDefault = 50000;
+ const uint_fast8_t kEmpty = UINT_FAST8_MAX;
+ 
+ @implementation Table : NSObject
+@@ -34,10 +34,11 @@ @implementation Table : NSObject
+ uint8_t numCardsOnTable;
+ 
+ - (instancetype) init {
+-    if ( self = [super init] ) {
++    if (self = [super init] ) {
+         _deck = [[Deck alloc ]init];
+         numPlayers = kNumPlayersDefault;
+         numSimulations = kNumSimulationsDefault;
++        _cardsOnTable = [NSMutableSet set];
+         
+         for (int i = 0; i < kNumPlayersMax; i++) {
+             holeCards[(2*i)] = kEmpty;
+@@ -83,8 +84,6 @@ - (void) playGame {
+     [self deal];
+     [self flopRiverTurn];
+     
+-//    [self logBoard];
+-//    [self logHands];
+     
+     
+     //Get best hand ranking
+diff --git a/poker-odds/UI/PlayerView.h b/poker-odds/UI/PlayerView.h
+index 9f9728b..b4829b3 100644
+--- a/poker-odds/UI/PlayerView.h
++++ b/poker-odds/UI/PlayerView.h
+@@ -7,10 +7,17 @@
+ //
+ 
+ #import <Foundation/Foundation.h>
++#import <UIKit/UIKit.h>
+ 
+ NS_ASSUME_NONNULL_BEGIN
+ 
+-@interface PlayerView : NSObject
++@interface PlayerView  : UIView
++
++@property NSInteger *playerId;
++@property UITextView *winPercent;
++@property UITextView *tiePercent;
++@property UITextView *equityPercent;
++
+ 
+ @end
+ 
+diff --git a/poker-odds/UI/PlayerView.m b/poker-odds/UI/PlayerView.m
+index 87b8720..e0729fd 100644
+--- a/poker-odds/UI/PlayerView.m
++++ b/poker-odds/UI/PlayerView.m
+@@ -1,5 +1,5 @@
+ //
+-//  PlayerView.m
++//  self.m
+ //  poker-odds
+ //
+ //  Created by Anthony on 12/6/21.
+@@ -7,7 +7,145 @@
+ //
+ 
+ #import "PlayerView.h"
++#import "CardButton.h"
++
++@interface PlayerView()
++
++@property Table *table;
++
++@end
+ 
+ @implementation PlayerView
+ 
++- (instancetype) initWithPlayerNum:(NSInteger) num {
++    if (self = [super init]) {
++        UITextField* playerId = [[UITextField alloc] init];
++        UITextField* winPercentage = [[UITextField alloc] init];
++        UITextField* tiePercentage = [[UITextField alloc] init];
++        UITextField* equity = [[UITextField alloc] init];
++        UIButton *resetButton = [[UIButton alloc] init];
++        UIButton *fold = [[UIButton alloc] init];
++        CardButton *button1 = [[CardButton alloc] init];
++        CardButton *button2 = [[CardButton alloc] init];
++        button2.currentPlayer = num;
++        button1.currentPlayer = num;
++        button1.isPlayerCard = button2.isPlayerCard = YES;
++        
++        
++        [self addSubview:resetButton];
++        [self addSubview:fold];
++        [self addSubview:button1];
++        [self addSubview:button2];
++        [self addSubview:playerId];
++        [self addSubview:winPercentage];
++        [self addSubview:tiePercentage];
++        [self addSubview:equity];
++
++        
++        [button1 setAction];
++        [button2 setAction];
++        
++        
++        [self.heightAnchor constraintEqualToConstant:cardHeight + 20].active = YES;
++        [self.widthAnchor constraintEqualToConstant:screenWidth].active = YES;
++        
++        
++        self.translatesAutoresizingMaskIntoConstraints = NO;
++        [self setNeedsDisplay];
++        
++        
++        
++        [resetButton setImage:[UIImage systemImageNamed:@"clear"] forState:UIControlStateNormal];
++        [resetButton addTarget:self action:@selector(resetCardsForPlayer:) forControlEvents:UIControlEventTouchUpInside];
++        resetButton.translatesAutoresizingMaskIntoConstraints = NO;
++        
++        
++        [fold setImage:[UIImage systemImageNamed:@"f.square"] forState:UIControlStateNormal];
++        [fold addTarget:self action:@selector(foldForPlayer:) forControlEvents:UIControlEventTouchUpInside];
++        fold.translatesAutoresizingMaskIntoConstraints = NO;
++        
++
++        playerId.translatesAutoresizingMaskIntoConstraints = NO;
++        winPercentage.translatesAutoresizingMaskIntoConstraints = NO;
++        tiePercentage.translatesAutoresizingMaskIntoConstraints = NO;
++        equity.translatesAutoresizingMaskIntoConstraints = NO;
++        
++        playerId.font = winPercentage.font = tiePercentage.font = equity.font = [UIFont fontWithName:@"Courier" size:12];
++        
++        
++        [playerId setText:[NSNumber numberWithLong:num].description];
++        [winPercentage setText:@"Win %:"];
++        [tiePercentage setText:@"Tie %:"];
++        [equity setText:@"Equity %:"];
++
++
++        [resetButton.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:40].active = YES;
++        [resetButton.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-15].active = YES;
++        
++        
++        [fold.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:40].active = YES;
++        [fold.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:15].active = YES;
++
++        
++        [playerId.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
++        [playerId.leadingAnchor constraintEqualToAnchor:self.leadingAnchor constant:15].active = YES;
++        
++        
++        [winPercentage.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:-15].active = YES;
++        [winPercentage.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-35].active = YES;
++        
++        
++        [tiePercentage.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
++        [tiePercentage.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-35].active = YES;
++        
++        
++        [equity.centerYAnchor constraintEqualToAnchor:self.centerYAnchor constant:15].active = YES;
++        [equity.trailingAnchor constraintEqualToAnchor:self.trailingAnchor constant:-35].active = YES;
++        
++        
++        [button1.trailingAnchor constraintEqualToAnchor:self.centerXAnchor constant:-8].active = YES;
++        [button1.centerYAnchor constraintEqualToAnchor:self.centerYAnchor].active = YES;
++
++        
++        [button2.centerYAnchor constraintEqualToAnchor:button1.centerYAnchor].active = YES;
++        [button2.leadingAnchor constraintEqualToAnchor:button1.trailingAnchor constant:16].active = YES;
++    }
++    return self;
++}
++
++-(void) removePlayer {
++    if (numPlayers > kNumPlayersMin) {
++        
++        [wins removeLastObject];
++        [equities removeLastObject];
++        [ties removeLastObject];
++        
++        UIView *viewToRemove = [selfs objectAtIndex:selfs.count - 1];
++        [self deleteCardsFromView:viewToRemove];
++        [viewToRemove removeFromSuperview];
++        [self removeLastObject];
++        numPlayers--;
++        
++        [table removePlayer];
++    }
++}
++
++- (void) foldForPlayer:(UIButton *)sender {
++    [self grayOutCardBackgrounds:[sender superview]];
++}
++
++- (void)grayOutCardBackgrounds:(UIView*)view {
++    for (UIView* insideView in view.subviews) {
++        if (insideView.subviews.count > 0) {
++            [self grayOutCardBackgrounds:insideView];
++        }
++        if ([insideView isKindOfClass:[CardButton class]]) {
++            CardButton *btn = (CardButton*) insideView;
++            if (btn.currentCard) {
++                [btn setBackgroundColor:[UIColor lightGrayColor]];
++            }
++        }
++    }
++}
++
+ @end
+diff --git a/poker-odds/UI/UIHelper.m b/poker-odds/UI/UIHelper.m
+index 228ebc4..1ae444f 100644
+--- a/poker-odds/UI/UIHelper.m
++++ b/poker-odds/UI/UIHelper.m
+@@ -17,23 +17,12 @@ @implementation UIHelper {
+ 
+ int screenWidth;
+ NSMutableArray *playerViews;
+-NSMutableArray *equities;
+-NSMutableArray *ties;
+-NSMutableArray *wins;
+-NSMutableSet *cardsOnTable;
+ Table *table;
+ 
+ 
+ - (instancetype) init {
+     if (self = [super init]) {
+         playerViews = [NSMutableArray array];
+-        equities = [NSMutableArray array];
+-        ties = [NSMutableArray array];
+-        wins = [NSMutableArray array];
+-        table = [[Table alloc] init];
+-        cardsOnTable = [NSMutableSet set];
+-        
+-        
+         
+         backImg = [UIImage imageNamed:@"back"];
+         
+@@ -58,7 +47,7 @@ - (void) simulate {
+     NSLog(@"%@", tieResults);
+     
+     
+-    for (int i = 0; i < wins.count; i++) {
++    for (int i = 0; i < table.wins.count; i++) {
+         
+         NSString *winPercent = [[winResults objectAtIndex:i] description];
+         NSString *tiePercent = [[tieResults objectAtIndex:i] description];
+@@ -259,43 +248,6 @@ -(void) addPlayer {
+     }
+ }
+ 
+--(void) removePlayer {
+-    if (numPlayers > kNumPlayersMin) {
+-        
+-        [wins removeLastObject];
+-        [equities removeLastObject];
+-        [ties removeLastObject];
+-        
+-        UIView *viewToRemove = [playerViews objectAtIndex:playerViews.count - 1];
+-        [self deleteCardsFromView:viewToRemove];
+-        [viewToRemove removeFromSuperview];
+-        [playerViews removeLastObject];
+-        numPlayers--;
+-        
+-        [table removePlayer];
+-    }
+-}
+-
+-- (void)foldForPlayer:(UIButton *)sender {
+-    [self grayOutCardBackgrounds:[sender superview]];
+-}
+-
+-- (void)grayOutCardBackgrounds:(UIView*)view {
+-    for (UIView* insideView in view.subviews) {
+-        if (insideView.subviews.count > 0) {
+-            [self grayOutCardBackgrounds:insideView];
+-        }
+-        if ([insideView isKindOfClass:[CardButton class]]) {
+-            CardButton *btn = (CardButton*) insideView;
+-            if (btn.currentCard) {
+-                [btn setBackgroundColor:[UIColor lightGrayColor]];
+-            }
+-        }
+-    }
+-}
+-
+-
+-
+ #pragma mark - User Input Card
+ 
+ -(void) getInputForButton:(id)sender

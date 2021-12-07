@@ -11,7 +11,7 @@ const NSInteger kNumPlayersMin = 2;
 const int kMaxPlayers = 10;
 const int kCardsPerHand = 2;
 const int kCardsOnTable = 5;
-const long kNumSimulationsDefault = 500000;
+const long kNumSimulationsDefault = 50000;
 const uint_fast8_t kEmpty = UINT_FAST8_MAX;
 
 @implementation Table : NSObject
@@ -34,10 +34,11 @@ uint8_t numPlayers;
 uint8_t numCardsOnTable;
 
 - (instancetype) init {
-    if ( self = [super init] ) {
+    if (self = [super init] ) {
         _deck = [[Deck alloc ]init];
         numPlayers = kNumPlayersDefault;
         numSimulations = kNumSimulationsDefault;
+        _cardsOnTable = [NSMutableSet set];
         
         for (int i = 0; i < kNumPlayersMax; i++) {
             holeCards[(2*i)] = kEmpty;
@@ -83,8 +84,6 @@ uint8_t numCardsOnTable;
     [self deal];
     [self flopRiverTurn];
     
-//    [self logBoard];
-//    [self logHands];
     
     
     //Get best hand ranking

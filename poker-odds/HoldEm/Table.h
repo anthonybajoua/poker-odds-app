@@ -13,6 +13,10 @@ const extern NSInteger kNumPlayersMin;
 
 @property Deck *deck;
 @property NSInteger numSimulations;
+@property NSMutableArray *equities;
+@property NSMutableArray *ties;
+@property NSMutableArray *wins;
+@property NSMutableSet *cardsOnTable;
 
 /**Simulates numSimulations games at the table at the given state. Returns an array of two arrays, the win counts and tie tie counts.*/
 - (NSArray*) simulate;

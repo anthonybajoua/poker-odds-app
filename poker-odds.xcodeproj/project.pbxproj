@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		890E0C77275F0A4F0076087E /* PlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 890E0C76275F0A4F0076087E /* PlayerView.m */; };
 		927BF56F261A80D20066A48B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF56E261A80D20066A48B /* AppDelegate.m */; };
 		927BF572261A80D20066A48B /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF571261A80D20066A48B /* SceneDelegate.m */; };
 		927BF575261A80D20066A48B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927BF574261A80D20066A48B /* ViewController.m */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		890E0C75275F0A4F0076087E /* PlayerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerView.h; sourceTree = "<group>"; };
+		890E0C76275F0A4F0076087E /* PlayerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerView.m; sourceTree = "<group>"; };
 		92245353261AE68D00223BE3 /* RankOffsets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RankOffsets.h; sourceTree = "<group>"; };
 		92245354261AE68E00223BE3 /* Deckcards.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deckcards.h; sourceTree = "<group>"; };
 		92245356261AE68E00223BE3 /* SevenEval.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SevenEval.h; sourceTree = "<group>"; };
@@ -172,6 +175,8 @@
 		92C3EF30264BD840006ABEB0 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				890E0C75275F0A4F0076087E /* PlayerView.h */,
+				890E0C76275F0A4F0076087E /* PlayerView.m */,
 				927E14DD2643A8880022EB22 /* CardButton.h */,
 				927E14DE2643A8880022EB22 /* CardButton.m */,
 				927BF56D261A80D20066A48B /* AppDelegate.h */,
@@ -337,6 +342,7 @@
 				927BF5A7261A81AD0066A48B /* Table.mm in Sources */,
 				927E14DF2643A8880022EB22 /* CardButton.m in Sources */,
 				927E14D32643A5720022EB22 /* UIHelper.m in Sources */,
+				890E0C77275F0A4F0076087E /* PlayerView.m in Sources */,
 				927BF572261A80D20066A48B /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
